@@ -1,50 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><title>Travaux | Sofia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets | Sofia Sekssaoui</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* Cacher la scrollbar de la nav */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animation d'apparition au scroll (Intersection Observer) */
+        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* Design des tags */
+        .tag-comp { background: rgba(0,0,0,0.05); padding: 8px 18px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; border: 1px solid rgba(0,0,0,0.1); }
+        .tag-tech { background: #111; color: white; padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+        /* Hover des images */
+        .img-wrapper { overflow: hidden; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .img-wrapper img { transition: transform 0.7s ease; }
+        .img-wrapper:hover img { transform: scale(1.05); }
+    </style>
 </head>
-<body class="bg-white font-['Plus Jakarta Sans'] antialiased">
-    <nav class="flex justify-between items-center px-10 py-8 border-b border-gray-100">
-        <a href="index.html" class="font-bold text-xs uppercase tracking-widest italic">S. Sekssaoui</a>
-        <div class="flex space-x-8 text-[10px] font-bold uppercase tracking-widest">
-            <a href="index.html">Accueil</a>
-            <a href="projets.html" class="text-orange-600">Projets</a>
+<body>
+
+    <nav class="fixed top-8 w-full z-[100] flex justify-center gap-4 px-4 pointer-events-none">
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 transition-all hover:bg-white/90">
+            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">CV</a>
+            <a href="#" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
+        </div>
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 overflow-x-auto whitespace-nowrap no-scrollbar transition-all hover:bg-white/90 max-w-[60vw] md:max-w-none">
+            <a href="index.html" class="hover:text-black transition-colors">Accueil</a>
+            <a href="projets.html" class="text-black transition-colors pointer-events-none">Projets</a>
+            <a href="experience.html" class="hover:text-black transition-colors">Expériences</a>
+            <a href="academique.html" class="hover:text-black transition-colors">Parcours</a>
         </div>
     </nav>
 
-    <main class="px-10 py-20">
-        <h2 class="text-xs font-bold text-gray-400 uppercase tracking-[0.5em] mb-20 italic">// Sélection de travaux</h2>
+    <header class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto reveal-up">
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Archive Technique</span>
+        <h1 class="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Selected <br><span class="text-gray-400 italic font-light">Works.</span></h1>
+        <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto">
+            Une plongée dans mes réalisations en ingénierie. Du routage de cartes électroniques au développement de firmwares industriels.
+        </p>
+    </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-32">
-            <div class="group">
-                <div class="overflow-hidden bg-gray-100 aspect-[4/5] mb-8">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+    <main class="max-w-7xl mx-auto px-6 pb-40 space-y-32">
+
+        <article class="flex flex-col md:flex-row items-center gap-16 reveal-up">
+            <div class="w-full md:w-[55%] relative group cursor-pointer">
+                <div class="img-wrapper aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Simulateur" class="w-full h-full object-cover">
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-3xl font-extrabold uppercase">Simulateur</h3>
-                        <p class="text-xs font-bold text-gray-400 mt-2 uppercase tracking-widest">Stage Primal-Solem</p>
-                    </div>
-                    <span class="text-[10px] font-bold border border-black px-4 py-2 rounded-full">2026</span>
+                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">01. Stage 2026</div>
+            </div>
+            
+            <div class="w-full md:w-[45%]">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Primal-Solem // Montpellier</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Simulateur de <br>Capteurs.</h2>
+                <p class="text-gray-500 leading-relaxed font-light mb-8">
+                    Développement complet d'un outil de simulation pour environnements industriels. L'objectif était de recréer fidèlement des signaux complexes pour valider les systèmes d'acquisition de l'entreprise. J'ai pris en charge le design matériel et l'écriture du firmware.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="tag-tech">Langage C</span>
+                    <span class="tag-tech">STM32CubeIDE</span>
+                    <span class="tag-tech">KiCad</span>
+                    <span class="tag-tech">RS485 / SDI-12</span>
+                </div>
+                <div class="flex gap-2 border-t border-gray-200 pt-6">
+                    <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Vérifier</span>
                 </div>
             </div>
+        </article>
 
-            <div class="group md:mt-40">
-                <div class="overflow-hidden bg-gray-100 aspect-[4/5] mb-8">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+        <article class="flex flex-col md:flex-row-reverse items-center gap-16 reveal-up">
+            <div class="w-full md:w-[55%] relative group cursor-pointer">
+                <div class="img-wrapper aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" alt="Fish'n'Chip" class="w-full h-full object-cover">
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-3xl font-extrabold uppercase">Fish'n'Chip</h3>
-                        <p class="text-xs font-bold text-gray-400 mt-2 uppercase tracking-widest">Conception PCB</p>
-                    </div>
-                    <span class="text-[10px] font-bold border border-black px-4 py-2 rounded-full">GEII</span>
+                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">02. SAÉ GEII</div>
+            </div>
+            
+            <div class="w-full md:w-[45%] md:text-right">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Universitaire // IUT</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Fish'n'<br>Chip.</h2>
+                <p class="text-gray-500 leading-relaxed font-light mb-8">
+                    Design et routage d'une carte électronique haute densité. Ce projet nécessitait une grande rigueur sur le placement des composants pour assurer l'intégrité du signal et minimiser les interférences électromagnétiques.
+                </p>
+                <div class="flex flex-wrap md:justify-end gap-2 mb-8">
+                    <span class="tag-tech">Routage PCB</span>
+                    <span class="tag-tech">KiCad</span>
+                    <span class="tag-tech">Électronique Analo/Num</span>
+                </div>
+                <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6">
+                    <span class="tag-comp">Concevoir</span>
                 </div>
             </div>
+        </article>
 
+        <article class="flex flex-col md:flex-row items-center gap-16 reveal-up">
+            <div class="w-full md:w-[55%] relative group cursor-pointer">
+                <div class="img-wrapper aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" alt="Robot Sumo" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">03. Robotique</div>
             </div>
+            
+            <div class="w-full md:w-[45%]">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Développement C++</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Robot <br>Sumo.</h2>
+                <p class="text-gray-500 leading-relaxed font-light mb-8">
+                    Programmation des stratégies de combat d'un robot autonome. J'ai travaillé sur l'optimisation des algorithmes de détection avec des capteurs ultrasoniques et la gestion des temps de réponse moteurs.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="tag-tech">C++</span>
+                    <span class="tag-tech">Capteurs / Actionneurs</span>
+                    <span class="tag-tech">Algorithmes</span>
+                </div>
+                <div class="flex gap-2 border-t border-gray-200 pt-6">
+                    <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Maintenir</span>
+                </div>
+            </div>
+        </article>
+
     </main>
+
+    <footer class="bg-[#111] text-white py-32 px-5 mt-20 rounded-t-[48px] reveal-up">
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8">Un projet ?</h2>
+            <p class="text-gray-400 text-lg mb-12 font-light">Je suis toujours intéressée par de nouveaux défis techniques en systèmes embarqués.</p>
+            <a href="mailto:sofiasekssaoui@gmail.com" class="bg-white text-black px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">
+                Me contacter
+            </a>
+            <div class="mt-20 text-[10px] font-bold uppercase tracking-widest text-gray-600">
+                © 2026 Sofia Sekssaoui — Portfolio
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optionnel : arrêter d'observer une fois visible pour que ça reste affiché
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15 // Se déclenche quand 15% de l'élément est visible
+            });
+
+            document.querySelectorAll('.reveal-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
