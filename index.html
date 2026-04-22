@@ -5,102 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sofia Sekssaoui | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f6f6f6; color: #1a1a1a; overflow: hidden; height: 100vh; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; overflow: hidden; height: 100vh; perspective: 1000px; }
         
-        /* Conteneur pour les images flottantes */
-        .floating-img { 
-            position: absolute; 
+        /* 1. ANIMATION DES IMAGES (INFINITE DRIFT) */
+        .drift-img { 
+            position: absolute; top: 0; left: 0;
             border-radius: 32px; 
             overflow: hidden; 
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             will-change: transform;
-            z-index: 5;
+            animation: drift var(--dur) linear infinite;
+            animation-delay: var(--delay);
+            z-index: 1;
+        }
+        @keyframes drift {
+            0% { transform: translateY(120vh) rotate(var(--r1)); }
+            100% { transform: translateY(-100vh) rotate(var(--r2)); }
         }
 
-        /* --- ANIMATIONS DE FLOTTEMENT PRÉCISES --- */
-        @keyframes float-1 { 
-            0%, 100% { transform: translate(0, 0) rotate(-6deg); } 
-            50% { transform: translate(-20px, 15px) rotate(-4deg); } 
+        /* 2. ANIMATION 3D DU TEXTE */
+        .text-container {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; text-align: center;
+            z-index: 10;
         }
-        @keyframes float-2 { 
-            0%, 100% { transform: translate(0, 0) rotate(4deg); } 
-            50% { transform: translate(15px, -20px) rotate(6deg); } 
+        .slide {
+            position: absolute; top: 50%; left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%) rotateX(-90deg);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            pointer-events: none;
         }
-        @keyframes float-3 { 
-            0%, 100% { transform: translate(0, 0) rotate(3deg); } 
-            50% { transform: translate(10px, 20px) rotate(1deg); } 
+        .slide.active {
+            transform: translate(-50%, -50%) rotateX(0deg);
+            opacity: 1;
+            pointer-events: auto;
         }
-        @keyframes float-4 { 
-            0%, 100% { transform: translate(0, 0) rotate(-4deg); } 
-            50% { transform: translate(-15px, -15px) rotate(-6deg); } 
-        }
-        @keyframes float-5 { 
-            0%, 100% { transform: translate(0, 0) rotate(0deg); } 
-            50% { transform: translate(0px, -25px) rotate(2deg); } 
+        .slide.exit {
+            transform: translate(-50%, -50%) rotateX(90deg);
+            opacity: 0;
         }
 
-        /* Application des positions et des durées (désynchronisées pour le naturel) */
-        .img-1 { top: 10%; left: 6%; width: 260px; height: 180px; animation: float-1 8s ease-in-out infinite; }
-        .img-2 { top: 6%; right: 10%; width: 220px; height: 280px; animation: float-2 10s ease-in-out infinite; }
-        .img-3 { bottom: 10%; left: 10%; width: 180px; height: 220px; animation: float-3 9s ease-in-out infinite; }
-        .img-4 { bottom: 6%; right: 16%; width: 240px; height: 240px; animation: float-4 11s ease-in-out infinite; }
-        .img-5 { bottom: 4%; left: 46%; width: 140px; height: 180px; animation: float-5 7s ease-in-out infinite; }
-
-        /* --- TEXTE CENTRAL --- */
-        .text-container { text-align: center; z-index: 10; position: relative; }
-        .dynamic-wrapper { height: 140px; overflow: hidden; display: block; }
-        .word-stack { transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1); }
-        .word { display: block; height: 140px; font-size: 130px; line-height: 140px; font-weight: 800; letter-spacing: -0.05em; }
-
-        /* Menu Style Pill (Comme ta vidéo) */
-        .pill-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.03); }
+        /* 3. STYLE DES PILULES */
+        .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
+        .huge-text { font-size: clamp(4rem, 11vw, 130px); line-height: 0.85; font-weight: 800; letter-spacing: -0.05em; }
     </style>
 </head>
-<body class="flex items-center justify-center">
+<body class="relative">
 
     <nav class="fixed top-8 right-8 z-50 flex items-center gap-4">
-        <div class="pill-nav flex gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+        <div class="pill-nav flex gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-500">
             <a href="projets.html" class="hover:text-black transition-colors">Works</a>
             <a href="experience.html" class="hover:text-black transition-colors">Blog</a>
         </div>
-        <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all">Contact</a>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Contact</a>
     </nav>
 
-    <div class="img-1 floating-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600" class="w-full h-full object-cover"></div>
-    <div class="img-2 floating-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600" class="w-full h-full object-cover"></div>
-    <div class="img-3 floating-img"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600" class="w-full h-full object-cover"></div>
-    <div class="img-4 floating-img"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=600" class="w-full h-full object-cover"></div>
-    <div class="img-5 floating-img"><img src="sofia.jpg" class="w-full h-full object-cover grayscale"></div>
+    <div class="drift-img" style="--delay: -15s; --dur: 30s; --r1: -5deg; --r2: 5deg; left: 8%; width: 220px; height: 180px;">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
+    </div>
+    <div class="drift-img" style="--delay: -5s; --dur: 35s; --r1: 8deg; --r2: -2deg; right: 10%; width: 180px; height: 260px;">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
+    </div>
+    <div class="drift-img" style="--delay: -25s; --dur: 28s; --r1: 0deg; --r2: -8deg; left: 25%; width: 160px; height: 200px;">
+        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
+    </div>
+    <div class="drift-img" style="--delay: -10s; --dur: 32s; --r1: -10deg; --r2: 0deg; right: 28%; width: 240px; height: 240px;">
+        <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
+    </div>
+    <div class="drift-img" style="--delay: -20s; --dur: 38s; --r1: 5deg; --r2: -5deg; left: 45%; width: 150px; height: 200px;">
+        <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
+    </div>
+    <div class="drift-img" style="--delay: 0s; --dur: 25s; --r1: -3deg; --r2: 3deg; left: 15%; width: 200px; height: 200px;">
+        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500" class="w-full h-full object-cover">
+    </div>
 
-    <div class="text-container">
-        <div class="dynamic-wrapper">
-            <div id="word-stack" class="word-stack">
-                <span class="word">Systems</span>
-                <span class="word">Hardware</span>
-                <span class="word">Websites</span>
-                <span class="word">Apps</span>
-            </div>
+    <div class="text-container h-[400px]">
+        
+        <div class="slide active">
+            <div class="huge-text text-black">Systems</div>
+            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">that</div>
+            <div class="huge-text text-black">perform</div>
+            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Learn more</a>
         </div>
-        <h2 class="text-[130px] font-light italic text-gray-200 leading-[0.8] mt-[-10px] tracking-tighter">that perform</h2>
-        <p class="text-[12px] font-bold uppercase tracking-[0.6em] mt-12 text-gray-400">Sofia SEKSSAOUI</p>
-        <a href="projets.html" class="mt-12 bg-black text-white px-12 py-6 rounded-full text-[11px] font-bold uppercase tracking-widest inline-block hover:shadow-xl transition-all">Learn more</a>
+
+        <div class="slide">
+            <div class="huge-text text-black">Hardware</div>
+            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">that</div>
+            <div class="huge-text text-black">delivers</div>
+            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Learn more</a>
+        </div>
+
+        <div class="slide">
+            <div class="huge-text text-black">Sofia</div>
+            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">future</div>
+            <div class="huge-text text-black">Ingénieure</div>
+            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Mon CV PDF</a>
+        </div>
+
     </div>
 
-    <div class="fixed bottom-10 left-10 flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-gray-300">
-        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> Montpellier, FR
+    <div class="fixed bottom-8 left-8 flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest">
+        <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center">
+            <span class="w-1 h-1 bg-white rounded-full"></span>
+        </span>
+        Montpellier, FR
     </div>
-    <div class="fixed bottom-10 right-10 text-[10px] font-bold uppercase tracking-widest text-gray-300">©2026</div>
+    <div class="fixed bottom-8 right-8 text-[12px] font-bold uppercase tracking-widest opacity-40">©2026</div>
 
     <script>
-        // Animation du texte qui défile verticalement
-        let currentWord = 0;
-        const stack = document.getElementById('word-stack');
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+
         setInterval(() => {
-            currentWord = (currentWord + 1) % 4;
-            stack.style.transform = `translateY(-${currentWord * 140}px)`;
-        }, 3000);
+            // L'ancien slide sort vers le haut
+            slides[current].classList.remove('active');
+            slides[current].classList.add('exit');
+            
+            let prev = current;
+            current = (current + 1) % slides.length;
+            
+            // Le nouveau slide entre par le bas
+            slides[current].classList.remove('exit'); 
+            slides[current].classList.add('active');
+            
+            // Nettoyage de la classe exit après la fin de l'animation
+            setTimeout(() => {
+                slides[prev].classList.remove('exit');
+            }, 1000); 
+        }, 3500); // Change toutes les 3.5 secondes
     </script>
 </body>
 </html>
