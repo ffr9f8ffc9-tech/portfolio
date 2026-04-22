@@ -3,58 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sofia Sekssaoui | Ingénierie</title>
+    <title>Sofia Sekssaoui | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;800&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; cursor: none; }
-        .cursor { width: 8px; height: 8px; background: #000; border-radius: 50%; position: fixed; pointer-events: none; z-index: 999; transition: transform 0.1s; }
-        .cursor-follower { width: 30px; height: 30px; border: 1px solid #000; border-radius: 50%; position: fixed; pointer-events: none; z-index: 998; transition: transform 0.15s, opacity 0.3s; }
-        .hover-link:hover ~ .cursor-follower { transform: scale(2); background: rgba(0,0,0,0.05); }
-        .logo-font { font-family: 'Playfair Display', serif; }
-        .fade-up { animation: fadeUp 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0d0d0d; color: #fff; overflow: hidden; }
+        .nav-item { font-size: 5vw; transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); opacity: 0.3; }
+        .nav-item:hover { opacity: 1; transform: translateX(20px) italic; color: #ea580c; }
+        .bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20vw; opacity: 0.02; font-weight: 800; pointer-events: none; white-space: nowrap; }
     </style>
 </head>
-<body class="text-[#1a1a1a] overflow-hidden">
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="follower"></div>
+<body>
+    <div class="bg-text">ENGINEER</div>
 
-    <nav class="flex justify-between items-center px-8 md:px-16 py-10">
-        <div class="logo-font text-2xl tracking-tighter italic">S. Sekssaoui</div>
-        <div class="flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em]">
-            <a href="projets.html" class="hover-link opacity-40 hover:opacity-100 transition-opacity">Travaux</a>
-            <a href="experience.html" class="hover-link opacity-40 hover:opacity-100 transition-opacity">Expérience</a>
-            <a href="academique.html" class="hover-link opacity-40 hover:opacity-100 transition-opacity">Parcours</a>
-        </div>
+    <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-10 z-50">
+        <div class="font-serif italic text-2xl">S. Sekssaoui</div>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="text-[10px] font-bold uppercase tracking-[0.3em] border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all">Contact</a>
     </nav>
 
-    <main class="h-[70vh] flex flex-col justify-center px-8 md:px-16 max-w-6xl">
-        <div class="fade-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-400 mb-6 block">Montpellier — FR</span>
-            <h1 class="text-5xl md:text-8xl font-light leading-[1.1] tracking-tight mb-8">
-                Concevoir l'<span class="italic font-medium">embarqué</span>,<br> 
-                penser l'infrastructure.
-            </h1>
-            <div class="flex flex-col md:flex-row gap-12 mt-12 items-start md:items-center">
-                <p class="text-sm text-gray-500 max-w-sm leading-relaxed">
-                    Spécialiste en développement bas-niveau et électronique de précision. Actuellement en transition vers l'INSA Rennes pour approfondir les systèmes communicants.
-                </p>
-                <a href="mailto:sofiasekssaoui@gmail.com" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest">
-                    <span class="w-12 h-[1px] bg-black group-hover:w-20 transition-all"></span>
-                    Obtenir le CV
-                </a>
-            </div>
+    <main class="h-screen flex flex-col justify-center px-8 md:px-20">
+        <div class="flex flex-col space-y-4">
+            <a href="projets.html" class="nav-item font-extrabold uppercase tracking-tighter italic">01. Projets</a>
+            <a href="experience.html" class="nav-item font-extrabold uppercase tracking-tighter italic">02. Expérience</a>
+            <a href="academique.html" class="nav-item font-extrabold uppercase tracking-tighter italic">03. Parcours</a>
+            <a href="#" class="nav-item font-extrabold uppercase tracking-tighter italic text-orange-600 opacity-100">04. Télécharger CV</a>
+        </div>
+        
+        <div class="mt-12 max-w-md text-gray-500 text-xs uppercase tracking-[0.2em] leading-loose">
+            Systèmes Embarqués — Électronique — Design Firmware. <br>
+            Future étudiante à l'INSA Rennes.
         </div>
     </main>
-
-    <script>
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('follower');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-            follower.style.left = e.clientX - 11 + 'px'; follower.style.top = e.clientY - 11 + 'px';
-        });
-    </script>
 </body>
 </html>

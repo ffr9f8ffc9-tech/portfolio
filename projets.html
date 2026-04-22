@@ -3,77 +3,54 @@
 <head>
     <meta charset="UTF-8"><title>Projets | Sofia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .project-card:hover img { transform: scale(1.05); }
-        .modal { display: none; position: fixed; inset: 0; background: white; z-index: 100; overflow-y: auto; }
-        body.modal-open { overflow: hidden; }
-    </style>
 </head>
-<body class="bg-[#fcfcfc] font-['Inter'] px-8 md:px-16">
-    <nav class="flex justify-between items-center py-10 mb-16">
-        <a href="index.html" class="italic font-serif text-xl">S.S</a>
-        <div class="flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em]">
-            <a href="projets.html" class="text-black border-b border-black">Projets</a>
-            <a href="experience.html" class="opacity-40">Expérience</a>
-            <a href="academique.html" class="opacity-40">Parcours</a>
+<body class="bg-[#0d0d0d] text-white font-['Plus Jakarta Sans'] px-8 md:px-20">
+    <nav class="flex justify-between items-center py-12 border-b border-white/10 mb-16">
+        <a href="index.html" class="font-serif italic text-2xl">S.S</a>
+        <div class="flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <a href="index.html" class="opacity-40 hover:opacity-100">Accueil</a>
+            <a href="projets.html" class="text-orange-500">Projets</a>
         </div>
     </nav>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div onclick="openModal('modal-simu')" class="project-card cursor-pointer group">
-            <div class="aspect-video bg-gray-100 overflow-hidden mb-6">
-                <div class="w-full h-full flex items-center justify-center text-gray-300 font-bold tracking-tighter text-4xl group-hover:text-black transition-colors">01</div>
-            </div>
-            <h3 class="text-lg font-semibold uppercase tracking-tight">Simulateur de Capteurs</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Stage PRIMAL-SOLEM</p>
-        </div>
-
-        <div onclick="openModal('modal-fish')" class="project-card cursor-pointer group">
-            <div class="aspect-video bg-gray-100 overflow-hidden mb-6">
-                <div class="w-full h-full flex items-center justify-center text-gray-300 font-bold tracking-tighter text-4xl group-hover:text-black transition-colors">02</div>
-            </div>
-            <h3 class="text-lg font-semibold uppercase tracking-tight">Fish'n'Chip</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Conception Électronique Universitaire</p>
-        </div>
-
-        <div onclick="openModal('modal-run')" class="project-card cursor-pointer group">
-            <div class="aspect-video bg-gray-100 overflow-hidden mb-6">
-                <div class="w-full h-full flex items-center justify-center text-gray-300 font-bold tracking-tighter text-4xl group-hover:text-black transition-colors">03</div>
-            </div>
-            <h3 class="text-lg font-semibold uppercase tracking-tight">Run Tracker</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Projet Personnel App Mobile</p>
-        </div>
-
-        <div onclick="openModal('modal-sumo')" class="project-card cursor-pointer group">
-            <div class="aspect-video bg-gray-100 overflow-hidden mb-6">
-                <div class="w-full h-full flex items-center justify-center text-gray-300 font-bold tracking-tighter text-4xl group-hover:text-black transition-colors">04</div>
-            </div>
-            <h3 class="text-lg font-semibold uppercase tracking-tight">Robot Sumo</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Programmation C++</p>
-        </div>
-    </div>
-
-    <div id="modal-simu" class="modal p-8 md:p-20">
-        <button onclick="closeModal('modal-simu')" class="fixed top-10 right-10 text-[10px] font-bold tracking-widest uppercase">Fermer ×</button>
-        <div class="max-w-4xl">
-            <span class="text-orange-600 font-bold text-[10px] uppercase tracking-[0.4em]">Hardware & Firmware</span>
-            <h2 class="text-5xl font-light mt-4 mb-10 leading-tight">Simulateur de capteurs de précision</h2>
-            <div class="grid md:grid-cols-2 gap-12 text-sm leading-relaxed text-gray-600">
-                <div>
-                    <h4 class="text-black font-bold mb-4 uppercase text-[10px] tracking-widest">Le Besoin</h4>
-                    <p>Développement d'un outil d'analyse interne pour PRIMAL-SOLEM permettant de simuler divers capteurs industriels pour tester leurs systèmes sans nécessiter le matériel réel.</p>
+    <section class="mb-32">
+        <h2 class="text-xs font-bold uppercase tracking-[0.5em] text-orange-600 mb-12 italic">// Universitaire & Stage</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="group">
+                <div class="overflow-hidden aspect-video bg-gray-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                 </div>
-                <div>
-                    <h4 class="text-black font-bold mb-4 uppercase text-[10px] tracking-widest">Stack Technique</h4>
-                    <p>Langage C, KiCad pour le PCB, Protocoles RS485 et SDI-12. Gestion des signaux ADC, TOR et Pulse.</p>
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">Simulateur de Capteurs</h3>
+                <p class="text-gray-500 text-sm mt-2">Stage Primal-Solem — Firmware C & Hardware.</p>
+            </div>
+            <div class="group">
+                <div class="overflow-hidden aspect-video bg-gray-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                 </div>
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">Fish'n'Chip</h3>
+                <p class="text-gray-500 text-sm mt-2">SAÉ GEII — Conception de carte électronique.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        function openModal(id) { document.getElementById(id).style.display = 'block'; document.body.classList.add('modal-open'); }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.classList.remove('modal-open'); }
-    </script>
+    <section class="mb-32">
+        <h2 class="text-xs font-bold uppercase tracking-[0.5em] text-gray-500 mb-12 italic">// Personnel</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="group">
+                <div class="overflow-hidden aspect-video bg-gray-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">Run Tracker</h3>
+                <p class="text-gray-500 text-sm mt-2">Application mobile de suivi de performance.</p>
+            </div>
+            <div class="group">
+                <div class="overflow-hidden aspect-video bg-gray-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">Robot Sumo</h3>
+                <p class="text-gray-500 text-sm mt-2">Programmation C++ de combat autonome.</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
