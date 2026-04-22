@@ -7,76 +7,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; overflow: hidden; height: 100vh; perspective: 1000px; margin: 0; padding: 0; }
+        /* On débloque le défilement global de la page */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* 1. L'ORBITE PARFAITE */
-        .orbit-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            z-index: 1;
-            /* Temps pour faire un tour complet (plus fluide) */
-            animation: spin 45s linear infinite;
-        }
+        /* --- 1. SECTION HERO (100vh avec overflow hidden) --- */
+        .hero-section { position: relative; height: 100vh; width: 100vw; overflow: hidden; }
 
-        /* Positions exactes réparties sur un cercle de 380px de rayon */
+        .orbit-container { position: absolute; top: 50%; left: 50%; width: 0; height: 0; z-index: 1; animation: spin 45s linear infinite; }
         .pos-1 { top: 0px; left: 380px; }
         .pos-2 { top: 361px; left: 117px; }
         .pos-3 { top: 223px; left: -307px; }
         .pos-4 { top: -223px; left: -307px; }
         .pos-5 { top: -361px; left: 117px; }
-
-        .orbit-wrapper {
-            position: absolute;
-            /* Centre l'image exactement sur son point d'ancrage */
-            transform: translate(-50%, -50%);
-        }
-
-        .orbit-img { 
-            border-radius: 32px; 
-            overflow: hidden; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            /* Tourne dans le sens inverse pour que l'image reste droite */
-            animation: anti-spin 45s linear infinite;
-        }
-
+        .orbit-wrapper { position: absolute; transform: translate(-50%, -50%); }
+        .orbit-img { border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); animation: anti-spin 45s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes anti-spin { 100% { transform: rotate(-360deg); } }
 
-        /* 2. TEXTE CENTRAL 3D */
-        .text-container {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%; text-align: center;
-            z-index: 10;
+        .text-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; z-index: 10; }
+        .slide { position: absolute; top: 50%; left: 50%; width: 100%; transform: translate(-50%, -50%) rotateX(-90deg); opacity: 0; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d; pointer-events: none; }
+        .slide.active { transform: translate(-50%, -50%) rotateX(0deg); opacity: 1; pointer-events: auto; }
+        .slide.exit { transform: translate(-50%, -50%) rotateX(90deg); opacity: 0; }
+        .huge-text { font-size: clamp(3rem, 7vw, 100px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
+        .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
+
+        /* --- 2. SECTION SCROLL REVEAL --- */
+        .reveal-wrapper { position: relative; height: 300vh; /* Permet de scroller longtemps pour l'animation */ }
+        .sticky-container { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+        
+        .expand-pill {
+            position: relative;
+            width: 140px; /* Taille de départ */
+            height: 60px; /* Taille de départ */
+            border-radius: 100px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            will-change: width, height, border-radius;
+            transform: translateZ(0); /* Accélération matérielle */
         }
-        .slide {
-            position: absolute; top: 50%; left: 50%;
-            width: 100%;
-            transform: translate(-50%, -50%) rotateX(-90deg);
-            opacity: 0;
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            pointer-events: none;
-        }
-        .slide.active {
-            transform: translate(-50%, -50%) rotateX(0deg);
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .slide.exit {
-            transform: translate(-50%, -50%) rotateX(90deg);
-            opacity: 0;
+        
+        .reveal-text-left, .reveal-text-right {
+            will-change: transform, opacity;
         }
 
-        /* 3. DESIGN ELEMENTS */
-        .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
-        .huge-text { font-size: clamp(3rem, 7vw, 100px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
+        .inner-reveal-content {
+            position: absolute;
+            color: white;
+            text-align: center;
+            opacity: 0; /* Caché au début */
+            will-change: opacity;
+            z-index: 10;
+        }
+
+        /* --- 3. SECTION SUIVANTE (PROJETS) --- */
+        .next-section { min-height: 100vh; background-color: white; padding: 100px 5%; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
-<body class="relative">
+<body>
 
     <nav class="fixed top-8 right-8 z-50 flex items-center gap-4">
         <div class="pill-nav flex gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-500">
@@ -86,88 +75,141 @@
         <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Contact</a>
     </nav>
 
-    <div class="orbit-container">
-        
-        <div class="orbit-wrapper pos-1">
-            <div class="orbit-img" style="width: 220px; height: 180px;">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
-            </div>
+    <header class="hero-section">
+        <div class="orbit-container">
+            <div class="orbit-wrapper pos-1"><div class="orbit-img" style="width: 220px; height: 180px;"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover"></div></div>
+            <div class="orbit-wrapper pos-2"><div class="orbit-img" style="width: 180px; height: 260px;"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover"></div></div>
+            <div class="orbit-wrapper pos-3"><div class="orbit-img" style="width: 160px; height: 200px;"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover"></div></div>
+            <div class="orbit-wrapper pos-4"><div class="orbit-img" style="width: 240px; height: 240px;"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover"></div></div>
+            <div class="orbit-wrapper pos-5"><div class="orbit-img" style="width: 150px; height: 200px;"><img src="sofia.jpg" class="w-full h-full object-cover grayscale"></div></div>
         </div>
 
-        <div class="orbit-wrapper pos-2">
-            <div class="orbit-img" style="width: 180px; height: 260px;">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
+        <div class="text-container h-[400px]">
+            <div class="slide active">
+                <div class="huge-text text-[#b0b0b0] font-light italic mb-2">Portfolio</div>
+                <div class="huge-text text-black">Sofia SEKSSAOUI</div>
             </div>
-        </div>
-
-        <div class="orbit-wrapper pos-3">
-            <div class="orbit-img" style="width: 160px; height: 200px;">
-                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
+            <div class="slide">
+                <div class="huge-text text-black">Découvrez</div>
+                <div class="huge-text text-black">qui je suis</div>
             </div>
-        </div>
-
-        <div class="orbit-wrapper pos-4">
-            <div class="orbit-img" style="width: 240px; height: 240px;">
-                <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
-            </div>
-        </div>
-
-        <div class="orbit-wrapper pos-5">
-            <div class="orbit-img" style="width: 150px; height: 200px;">
-                <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
+            <div class="slide">
+                <div class="huge-text text-black">Future ingénieure</div>
+                <div class="huge-text text-[#b0b0b0] text-[50px] lowercase font-medium tracking-normal my-2">en</div>
+                <div class="huge-text text-black">Systèmes embarqués</div>
             </div>
         </div>
         
-    </div>
-
-    <div class="text-container h-[400px]">
-        
-        <div class="slide active">
-            <div class="huge-text text-[#b0b0b0] font-light italic mb-2">Portfolio</div>
-            <div class="huge-text text-black">Sofia SEKSSAOUI</div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 animate-bounce">
+            Keep Scrolling ↓
         </div>
+    </header>
 
-        <div class="slide">
-            <div class="huge-text text-black">Découvrez</div>
-            <div class="huge-text text-black">qui je suis</div>
+    <section id="reveal-section" class="reveal-wrapper">
+        <div class="sticky-container">
+            <div class="flex items-center justify-center gap-4 text-5xl md:text-8xl font-extrabold tracking-tighter w-full px-4">
+                
+                <span id="text-left" class="reveal-text-left">Conception</span>
+                
+                <div id="expand-pill" class="expand-pill bg-gray-300">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                    
+                    <div id="inner-content" class="inner-reveal-content">
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-4">L'ingénierie sur-mesure.</h2>
+                        <p class="text-lg md:text-xl font-light opacity-80">Routage, Firmware & Systèmes Embarqués</p>
+                    </div>
+                </div>
+                
+                <span id="text-right" class="reveal-text-right">Embarquée</span>
+
+            </div>
         </div>
+    </section>
 
-        <div class="slide">
-            <div class="huge-text text-black">Future ingénieure</div>
-            <div class="huge-text text-[#b0b0b0] text-[50px] lowercase font-medium tracking-normal my-2">en</div>
-            <div class="huge-text text-black">Systèmes embarqués</div>
+    <section class="next-section">
+        <div class="text-center">
+            <h2 class="text-6xl md:text-9xl font-extrabold tracking-tighter">Work°</h2>
+            <p class="mt-6 text-gray-500 uppercase tracking-widest text-xs font-bold">La suite de tes projets ici...</p>
         </div>
-
-    </div>
-
-    <div class="absolute top-[65%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <a href="projets.html" class="bg-black text-white px-10 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">Découvrir mes projets</a>
-    </div>
-
-    <div class="fixed bottom-8 left-8 flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-gray-500">
-        <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
-        Montpellier, FR
-    </div>
-    <div class="fixed bottom-8 right-8 text-[12px] font-bold uppercase tracking-widest text-gray-400">©2026</div>
+    </section>
 
     <script>
+        // 1. Rotation 3D du texte Hero
         const slides = document.querySelectorAll('.slide');
         let current = 0;
-
         setInterval(() => {
             slides[current].classList.remove('active');
             slides[current].classList.add('exit');
-            
             let prev = current;
             current = (current + 1) % slides.length;
-            
             slides[current].classList.remove('exit'); 
             slides[current].classList.add('active');
+            setTimeout(() => { slides[prev].classList.remove('exit'); }, 1000); 
+        }, 4000);
+
+        // 2. Animation Scroll Reveal Fluide (Lerp)
+        const revealSection = document.getElementById('reveal-section');
+        const pill = document.getElementById('expand-pill');
+        const textLeft = document.getElementById('text-left');
+        const textRight = document.getElementById('text-right');
+        const innerContent = document.getElementById('inner-content');
+
+        let targetScroll = 0;
+        let currentScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            targetScroll = window.scrollY;
+        });
+
+        function animateScroll() {
+            // Lerp pour fluidifier le mouvement (effet beurre)
+            currentScroll += (targetScroll - currentScroll) * 0.08;
+
+            const rect = revealSection.getBoundingClientRect();
+            // On calcule où on en est dans la section reveal (de 0 à 1)
+            let progress = 0;
             
-            setTimeout(() => {
-                slides[prev].classList.remove('exit');
-            }, 1000); 
-        }, 4000); // Défilement toutes les 4 secondes
+            // Si le haut de la section touche le haut de l'écran
+            if (rect.top <= 0) {
+                // Le dénominateur = hauteur totale - 1 écran (pour finir l'anim juste avant de quitter la section)
+                progress = Math.min(1, Math.max(0, Math.abs(rect.top) / (rect.height - window.innerHeight)));
+            }
+
+            // --- CALCUL DES TRANSFORMATIONS ---
+            // Largeur : 140px -> 94vw
+            const w = 140 + ((window.innerWidth * 0.94) - 140) * progress;
+            // Hauteur : 60px -> 85vh
+            const h = 60 + ((window.innerHeight * 0.85) - 60) * progress;
+            // Border Radius : 100px -> 40px
+            const br = 100 - (100 - 40) * progress;
+
+            // Application à la pilule
+            pill.style.width = `${w}px`;
+            pill.style.height = `${h}px`;
+            pill.style.borderRadius = `${br}px`;
+
+            // Écartement des textes ("Conception" vers la gauche, "Embarquée" vers la droite)
+            // On ajoute aussi une baisse d'opacité pour qu'ils disparaissent
+            textLeft.style.transform = `translateX(${-100 * progress}vw)`;
+            textLeft.style.opacity = 1 - (progress * 2);
+            
+            textRight.style.transform = `translateX(${100 * progress}vw)`;
+            textRight.style.opacity = 1 - (progress * 2);
+
+            // Apparition du texte interne ("L'ingénierie sur-mesure")
+            // N'apparaît que dans les derniers 30% du scroll
+            if(progress > 0.7) {
+                innerContent.style.opacity = (progress - 0.7) * 3.33;
+                innerContent.style.transform = `translateY(${20 - ((progress - 0.7) * 20 * 3.33)}px)`;
+            } else {
+                innerContent.style.opacity = 0;
+            }
+
+            requestAnimationFrame(animateScroll);
+        }
+
+        // Lancement de la boucle d'animation
+        animateScroll();
     </script>
 </body>
 </html>
