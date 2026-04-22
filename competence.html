@@ -14,11 +14,25 @@
         .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-up.visible { opacity: 1; transform: translateY(0); }
 
-        .skill-card { background: white; border-radius: 40px; padding: 50px; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; }
-        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+        /* Style de l'accordéon */
+        .skill-item { background: white; border-radius: 30px; border: 1px solid rgba(0,0,0,0.05); margin-bottom: 20px; overflow: hidden; transition: all 0.4s ease; }
+        .skill-header { padding: 40px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+        .skill-header:hover { background: #fafafa; }
+        
+        .skill-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease; padding: 0 40px; background: #fff; }
+        .skill-item.active .skill-content { max-height: 1200px; padding-bottom: 40px; }
+        .skill-item.active { box-shadow: 0 30px 60px rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.1); }
 
-        .level-badge { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #111; background: #f0f0f0; padding: 6px 12px; border-radius: 99px; }
-        .skill-title { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: #aaa; margin-bottom: 12px; display: block; }
+        .plus-icon { width: 24px; height: 24px; position: relative; transition: transform 0.4s; }
+        .plus-icon::before, .plus-icon::after { content: ''; position: absolute; background: #000; transition: all 0.3s; }
+        .plus-icon::before { width: 2px; height: 100%; left: 11px; top: 0; }
+        .plus-icon::after { width: 100%; height: 2px; top: 11px; left: 0; }
+        .skill-item.active .plus-icon { transform: rotate(45deg); }
+
+        .sub-skill-grid { display: grid; grid-template-cols: 1 md:grid-cols-2 gap-8 pt-6 border-t border-gray-100; }
+        .section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-bottom: 15px; display: block; }
+        .ac-item { font-size: 14px; color: #555; margin-bottom: 8px; padding-left: 15px; position: relative; }
+        .ac-item::before { content: '→'; position: absolute; left: 0; color: #000; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -38,83 +52,129 @@
     </nav>
 
     <header class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto reveal-up">
-        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Référentiel GEII - Spécialité ESE</span>
-        <h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-8 leading-tight italic">Compétences.</h1>
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Référentiel B.U.T. GEII</span>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 italic">Compétences.</h1>
+        <p class="text-gray-500 max-w-2xl mx-auto font-light italic">Cliquez sur une compétence pour explorer les détails du référentiel.</p>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <main class="max-w-5xl mx-auto px-6 pb-20">
 
-        <article class="skill-card reveal-up">
-            <span class="skill-title">Compétence 1</span>
-            <div class="flex justify-between items-start mb-6">
-                <h2 class="text-3xl font-extrabold tracking-tight">Concevoir</h2>
-                <span class="level-badge">Niveau 3</span>
+        <div class="skill-item reveal-up">
+            <div class="skill-header" onclick="toggleSkill(this)">
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Compétence 1</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Concevoir</h2>
+                </div>
+                <div class="plus-icon"></div>
             </div>
-            <p class="text-gray-500 font-light leading-relaxed mb-6">
-                Concevoir la partie GEII d'un système en adoptant une approche sélective dans les choix technologiques.
-            </p>
-            <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                <li class="flex items-center gap-3">/ Réalisation de prototypes hardware/software</li>
-                <li class="flex items-center gap-3">/ Études de faisabilité technique</li>
-                <li class="flex items-center gap-3">/ Rédaction de dossiers de fabrication</li>
-            </ul>
-        </article>
+            <div class="skill-content">
+                <div class="sub-skill-grid">
+                    <div>
+                        <span class="section-title">Situations Professionnelles</span>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Étude de faisabilité, chiffrage de prototypes, conception hardware/software à partir d'un cahier des charges partiel.</p>
+                    </div>
+                    <div>
+                        <span class="section-title">Apprentissages Critiques (AC)</span>
+                        <div class="ac-item">AC11.01 | Analyse fonctionnelle de systèmes</div>
+                        <div class="ac-item">AC21.01 | Solutions techniques liées à l'analyse</div>
+                        <div class="ac-item">AC31.01 | Approche sélective des technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <article class="skill-card reveal-up">
-            <span class="skill-title">Compétence 2</span>
-            <div class="flex justify-between items-start mb-6">
-                <h2 class="text-3xl font-extrabold tracking-tight">Vérifier</h2>
-                <span class="level-badge">Niveau 3</span>
+        <div class="skill-item reveal-up">
+            <div class="skill-header" onclick="toggleSkill(this)">
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Compétence 2</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Vérifier</h2>
+                </div>
+                <div class="plus-icon"></div>
             </div>
-            <p class="text-gray-500 font-light leading-relaxed mb-6">
-                Vérifier un système en respectant les contraintes réglementaires et environnementales.
-            </p>
-            <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                <li class="flex items-center gap-3">/ Élaboration de protocoles de test</li>
-                <li class="flex items-center gap-3">/ Mesures et instrumentation avancées</li>
-                <li class="flex items-center gap-3">/ Validation de conformité hardware</li>
-            </ul>
-        </article>
+            <div class="skill-content">
+                <div class="sub-skill-grid">
+                    <div>
+                        <span class="section-title">Situations Professionnelles</span>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Élaboration de protocoles d'essais, mesures de grandeurs physiques, validation de conformité.</p>
+                    </div>
+                    <div>
+                        <span class="section-title">Apprentissages Critiques (AC)</span>
+                        <div class="ac-item">AC12.01 | Utilisation de l'instrumentation de base</div>
+                        <div class="ac-item">AC22.01 | Protocoles de tests réglementaires</div>
+                        <div class="ac-item">AC32.01 | Validation globale de systèmes complexes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <article class="skill-card reveal-up">
-            <span class="skill-title">Compétence 3</span>
-            <div class="flex justify-between items-start mb-6">
-                <h2 class="text-3xl font-extrabold tracking-tight">Maintenir</h2>
-                <span class="level-badge">Niveau 3</span>
+        <div class="skill-item reveal-up">
+            <div class="skill-header" onclick="toggleSkill(this)">
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Compétence 3</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Maintenir</h2>
+                </div>
+                <div class="plus-icon"></div>
             </div>
-            <p class="text-gray-500 font-light leading-relaxed mb-6">
-                Assurer le maintien en condition opérationnelle d'un système GEII.
-            </p>
-            <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                <li class="flex items-center gap-3">/ Diagnostic de pannes complexes</li>
-                <li class="flex items-center gap-3">/ Maintenance préventive et corrective</li>
-                <li class="flex items-center gap-3">/ Gestion de la fin de vie des produits</li>
-            </ul>
-        </article>
+            <div class="skill-content">
+                <div class="sub-skill-grid">
+                    <div>
+                        <span class="section-title">Situations Professionnelles</span>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Diagnostic de pannes, maintenance préventive/corrective, gestion de fin de vie.</p>
+                    </div>
+                    <div>
+                        <span class="section-title">Apprentissages Critiques (AC)</span>
+                        <div class="ac-item">AC13.01 | Remplacement de constituants défectueux</div>
+                        <div class="ac-item">AC23.01 | Analyse de causes de défaillance</div>
+                        <div class="ac-item">AC33.01 | Maintien en condition opérationnelle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <article class="skill-card reveal-up">
-            <span class="skill-title">Compétence 4</span>
-            <div class="flex justify-between items-start mb-6">
-                <h2 class="text-3xl font-extrabold tracking-tight">Intégrer</h2>
-                <span class="level-badge">Niveau 3</span>
+        <div class="skill-item reveal-up">
+            <div class="skill-header" onclick="toggleSkill(this)">
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Compétence 4</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Intégrer</h2>
+                </div>
+                <div class="plus-icon"></div>
             </div>
-            <p class="text-gray-500 font-light leading-relaxed mb-6">
-                Intégrer un système de commande et de contrôle dans un procédé industriel.
-            </p>
-            <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                <li class="flex items-center gap-3">/ Mise en service de réseaux industriels</li>
-                <li class="flex items-center gap-3">/ Planification d'installation</li>
-                <li class="flex items-center gap-3">/ Documentation de conformité</li>
-            </ul>
-        </article>
+            <div class="skill-content">
+                <div class="sub-skill-grid">
+                    <div>
+                        <span class="section-title">Situations Professionnelles</span>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Mise en service de réseaux industriels, planification d'installations, gestion de la qualité.</p>
+                    </div>
+                    <div>
+                        <span class="section-title">Apprentissages Critiques (AC)</span>
+                        <div class="ac-item">AC14.01 | Câblage et raccordement</div>
+                        <div class="ac-item">AC24.01 | Procédures de mise en service</div>
+                        <div class="ac-item">AC34.01 | Planification et dossier de conformité</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
     <footer class="mt-10 mb-10 pt-10 border-t border-black/10 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 reveal-up">
-        © 2026 Sofia Sekssaoui — Référentiel de Compétences B.U.T. GEII
+        © 2026 Sofia Sekssaoui — Référentiel B.U.T. GEII
     </footer>
 
     <script>
+        function toggleSkill(header) {
+            const item = header.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Ferme tous les autres
+            document.querySelectorAll('.skill-item').forEach(el => el.classList.remove('active'));
+            
+            // Ouvre celui cliqué s'il n'était pas actif
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
