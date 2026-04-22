@@ -7,22 +7,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; overflow: hidden; height: 100vh; perspective: 1000px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; overflow: hidden; height: 100vh; perspective: 1000px; margin: 0; padding: 0; }
         
-        /* 1. ANIMATION DES IMAGES (INFINITE DRIFT) */
-        .drift-img { 
-            position: absolute; top: 0; left: 0;
+        /* 1. ANIMATION DES IMAGES (ORBIT) */
+        /* Les images tournent en rond autour du centre */
+        .orbit-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            z-index: 1;
+            /* L'animation globale de rotation */
+            animation: spin 60s linear infinite;
+        }
+
+        .orbit-img { 
+            position: absolute;
             border-radius: 32px; 
             overflow: hidden; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             will-change: transform;
-            animation: drift var(--dur) linear infinite;
-            animation-delay: var(--delay);
-            z-index: 1;
+            /* On annule la rotation du parent pour que l'image reste droite */
+            animation: anti-spin 60s linear infinite;
         }
-        @keyframes drift {
-            0% { transform: translateY(120vh) rotate(var(--r1)); }
-            100% { transform: translateY(-100vh) rotate(var(--r2)); }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes anti-spin {
+            100% { transform: rotate(-360deg); }
         }
 
         /* 2. ANIMATION 3D DU TEXTE */
@@ -53,7 +67,7 @@
 
         /* 3. STYLE DES PILULES */
         .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
-        .huge-text { font-size: clamp(4rem, 11vw, 130px); line-height: 0.85; font-weight: 800; letter-spacing: -0.05em; }
+        .huge-text { font-size: clamp(3rem, 9vw, 110px); line-height: 0.85; font-weight: 800; letter-spacing: -0.05em; }
     </style>
 </head>
 <body class="relative">
@@ -66,46 +80,37 @@
         <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Contact</a>
     </nav>
 
-    <div class="drift-img" style="--delay: -15s; --dur: 30s; --r1: -5deg; --r2: 5deg; left: 8%; width: 220px; height: 180px;">
-        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
-    </div>
-    <div class="drift-img" style="--delay: -5s; --dur: 35s; --r1: 8deg; --r2: -2deg; right: 10%; width: 180px; height: 260px;">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
-    </div>
-    <div class="drift-img" style="--delay: -25s; --dur: 28s; --r1: 0deg; --r2: -8deg; left: 25%; width: 160px; height: 200px;">
-        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
-    </div>
-    <div class="drift-img" style="--delay: -10s; --dur: 32s; --r1: -10deg; --r2: 0deg; right: 28%; width: 240px; height: 240px;">
-        <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
-    </div>
-    <div class="drift-img" style="--delay: -20s; --dur: 38s; --r1: 5deg; --r2: -5deg; left: 45%; width: 150px; height: 200px;">
-        <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
-    </div>
-    <div class="drift-img" style="--delay: 0s; --dur: 25s; --r1: -3deg; --r2: 3deg; left: 15%; width: 200px; height: 200px;">
-        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500" class="w-full h-full object-cover">
+    <div class="orbit-container">
+        <div class="orbit-img" style="top: -250px; left: -400px; width: 220px; height: 180px;">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
+        </div>
+        <div class="orbit-img" style="top: 150px; left: 300px; width: 180px; height: 260px;">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
+        </div>
+        <div class="orbit-img" style="top: -300px; left: 200px; width: 160px; height: 200px;">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
+        </div>
+        <div class="orbit-img" style="top: 200px; left: -350px; width: 240px; height: 240px;">
+            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
+        </div>
+        <div class="orbit-img" style="top: 0px; left: -500px; width: 150px; height: 200px;">
+            <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
+        </div>
     </div>
 
     <div class="text-container h-[400px]">
         
         <div class="slide active">
-            <div class="huge-text text-black">Systems</div>
-            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">that</div>
-            <div class="huge-text text-black">perform</div>
-            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Learn more</a>
+            <div class="huge-text text-black">Portfolio</div>
+            <div class="huge-text text-black">Sofia SEKSSAOUI</div>
+            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Découvrir mes projets</a>
         </div>
 
         <div class="slide">
-            <div class="huge-text text-black">Hardware</div>
-            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">that</div>
-            <div class="huge-text text-black">delivers</div>
-            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Learn more</a>
-        </div>
-
-        <div class="slide">
-            <div class="huge-text text-black">Sofia</div>
-            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">future</div>
-            <div class="huge-text text-black">Ingénieure</div>
-            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Mon CV PDF</a>
+            <div class="huge-text text-black">Découvrez</div>
+            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">qui</div>
+            <div class="huge-text text-black">Je suis</div>
+            <a href="experience.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Mon parcours</a>
         </div>
 
     </div>
@@ -123,22 +128,19 @@
         let current = 0;
 
         setInterval(() => {
-            // L'ancien slide sort vers le haut
             slides[current].classList.remove('active');
             slides[current].classList.add('exit');
             
             let prev = current;
             current = (current + 1) % slides.length;
             
-            // Le nouveau slide entre par le bas
             slides[current].classList.remove('exit'); 
             slides[current].classList.add('active');
             
-            // Nettoyage de la classe exit après la fin de l'animation
             setTimeout(() => {
                 slides[prev].classList.remove('exit');
             }, 1000); 
-        }, 3500); // Change toutes les 3.5 secondes
+        }, 4000); 
     </script>
 </body>
 </html>
