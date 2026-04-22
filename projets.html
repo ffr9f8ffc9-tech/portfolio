@@ -9,30 +9,36 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Cacher la scrollbar de la nav */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Animation d'apparition au scroll (Intersection Observer) */
+        /* Animation Scroll */
         .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* Design des tags */
+        /* Tags */
         .tag-comp { background: rgba(0,0,0,0.05); padding: 8px 18px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; border: 1px solid rgba(0,0,0,0.1); }
         .tag-tech { background: #111; color: white; padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
 
-        /* Hover des images */
-        .img-wrapper { overflow: hidden; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        /* Effet de survol sur la carte projet (Indique que c'est cliquable) */
+        .project-card { cursor: pointer; group; }
+        .img-wrapper { overflow: hidden; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .project-card:hover .img-wrapper { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
         .img-wrapper img { transition: transform 0.7s ease; }
-        .img-wrapper:hover img { transform: scale(1.05); }
+        .project-card:hover .img-wrapper img { transform: scale(1.05); }
+
+        /* Modale "Full Screen" (L'expansion) */
+        #project-modal { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s; will-change: transform, opacity; }
+        .modal-open { transform: translateY(0) !important; opacity: 1 !important; }
+        body.modal-active { overflow: hidden; } /* Bloque le scroll du fond quand le projet est ouvert */
     </style>
 </head>
 <body>
 
     <nav class="fixed top-8 w-full z-[100] flex justify-center gap-4 px-4 pointer-events-none">
         <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 transition-all hover:bg-white/90">
-            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">CV</a>
-            <a href="#" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
+            <a href="https://file.garden/aeij_fhnrxe8Mmog/CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">CV</a>
+            <a href="https://www.linkedin.com/in/sofia-sekssaoui" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
         </div>
         <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 overflow-x-auto whitespace-nowrap no-scrollbar transition-all hover:bg-white/90 max-w-[60vw] md:max-w-none">
             <a href="index.html" class="hover:text-black transition-colors">Accueil</a>
@@ -46,14 +52,21 @@
         <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Archive Technique</span>
         <h1 class="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Selected <br><span class="text-gray-400 italic font-light">Works.</span></h1>
         <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto">
-            Une plongée dans mes réalisations en ingénierie. Du routage de cartes électroniques au développement de firmwares industriels.
+            Cliquez sur un projet pour explorer les détails techniques. Du hardware industriel aux applications mobiles de performance.
         </p>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-40 space-y-32">
 
-        <article class="flex flex-col md:flex-row items-center gap-16 reveal-up">
-            <div class="w-full md:w-[55%] relative group cursor-pointer">
+        <article class="project-card flex flex-col md:flex-row items-center gap-16 reveal-up" 
+            data-title="Simulateur de Capteurs"
+            data-img="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"
+            data-context="Stage 2026 // Primal-Solem"
+            data-tech="Langage C, STM32CubeIDE, KiCad, RS485, SDI-12"
+            data-desc="Ce projet a été réalisé lors de mon stage chez Primal-Solem. L'objectif était de développer un outil capable de simuler fidèlement des signaux de capteurs industriels pour valider les cartes d'acquisition en interne."
+            data-details="La conception a impliqué la création d'un PCB complet sous KiCad. Côté firmware, j'ai programmé en C bas-niveau sur un microcontrôleur STM32. Le défi principal résidait dans le respect strict des timings des protocoles de communication série industriels (RS485 et SDI-12) et dans la précision de la génération des signaux analogiques.">
+            
+            <div class="w-full md:w-[55%] relative">
                 <div class="img-wrapper aspect-[4/3]">
                     <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Simulateur" class="w-full h-full object-cover">
                 </div>
@@ -61,77 +74,124 @@
             </div>
             
             <div class="w-full md:w-[45%]">
-                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Primal-Solem // Montpellier</span>
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Simulateur de <br>Capteurs.</h2>
-                <p class="text-gray-500 leading-relaxed font-light mb-8">
-                    Développement complet d'un outil de simulation pour environnements industriels. L'objectif était de recréer fidèlement des signaux complexes pour valider les systèmes d'acquisition de l'entreprise. J'ai pris en charge le design matériel et l'écriture du firmware.
-                </p>
-                <div class="flex flex-wrap gap-2 mb-8">
-                    <span class="tag-tech">Langage C</span>
-                    <span class="tag-tech">STM32CubeIDE</span>
-                    <span class="tag-tech">KiCad</span>
-                    <span class="tag-tech">RS485 / SDI-12</span>
+                <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
+                    <span class="tag-tech">STM32</span><span class="tag-tech">KiCad</span><span class="tag-tech">Firmware C</span>
                 </div>
-                <div class="flex gap-2 border-t border-gray-200 pt-6">
-                    <span class="tag-comp">Concevoir</span>
-                    <span class="tag-comp">Implanter</span>
-                    <span class="tag-comp">Vérifier</span>
+                <div class="flex gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                    Cliquez pour voir les détails →
                 </div>
             </div>
         </article>
 
-        <article class="flex flex-col md:flex-row-reverse items-center gap-16 reveal-up">
-            <div class="w-full md:w-[55%] relative group cursor-pointer">
+        <article class="project-card flex flex-col md:flex-row-reverse items-center gap-16 reveal-up"
+            data-title="Fish'n'Chip"
+            data-img="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200"
+            data-context="SAÉ GEII // Universitaire"
+            data-tech="Routage PCB, KiCad, Électronique Analogique et Numérique"
+            data-desc="Projet universitaire axé sur la conception matérielle (Hardware). Le but était de concevoir et router une carte électronique complexe."
+            data-details="Le projet a nécessité une analyse approfondie des contraintes de routage haute densité. J'ai dû prendre en compte l'intégrité du signal, l'adaptation d'impédance et le placement stratégique des plans de masse et d'alimentation pour minimiser le bruit électromagnétique (CEM).">
+            
+            <div class="w-full md:w-[55%] relative">
                 <div class="img-wrapper aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" alt="Fish'n'Chip" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">02. SAÉ GEII</div>
             </div>
             
             <div class="w-full md:w-[45%] md:text-right">
-                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Universitaire // IUT</span>
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Fish'n'<br>Chip.</h2>
-                <p class="text-gray-500 leading-relaxed font-light mb-8">
-                    Design et routage d'une carte électronique haute densité. Ce projet nécessitait une grande rigueur sur le placement des composants pour assurer l'intégrité du signal et minimiser les interférences électromagnétiques.
-                </p>
-                <div class="flex flex-wrap md:justify-end gap-2 mb-8">
-                    <span class="tag-tech">Routage PCB</span>
-                    <span class="tag-tech">KiCad</span>
-                    <span class="tag-tech">Électronique Analo/Num</span>
+                <div class="flex flex-wrap md:justify-end gap-2 mb-8 pointer-events-none">
+                    <span class="tag-tech">Routage PCB</span><span class="tag-tech">Hardware</span>
                 </div>
-                <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6">
-                    <span class="tag-comp">Concevoir</span>
+                <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                    Cliquez pour voir les détails →
                 </div>
             </div>
         </article>
 
-        <article class="flex flex-col md:flex-row items-center gap-16 reveal-up">
-            <div class="w-full md:w-[55%] relative group cursor-pointer">
+        <article class="project-card flex flex-col md:flex-row items-center gap-16 reveal-up"
+            data-title="Robot Sumo"
+            data-img="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200"
+            data-context="Développement C++ // Robotique"
+            data-tech="C++, Microcontrôleurs, Capteurs ultrasoniques, Actionneurs"
+            data-desc="Participation à un tournoi de robotique où l'objectif était de concevoir un robot autonome capable de détecter et pousser un adversaire hors d'un dojo."
+            data-details="La partie logicielle était au cœur du projet. J'ai programmé en C++ les machines d'états (State Machines) gérant les différentes phases de combat (Recherche, Alignement, Attaque). La difficulté majeure a été la gestion temps réel des interruptions liées aux capteurs de proximité et d'infrarouge pour éviter que le robot ne sorte lui-même de l'arène.">
+            
+            <div class="w-full md:w-[55%] relative">
                 <div class="img-wrapper aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" alt="Robot Sumo" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">03. Robotique</div>
             </div>
             
             <div class="w-full md:w-[45%]">
-                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-4">Développement C++</span>
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Robot <br>Sumo.</h2>
-                <p class="text-gray-500 leading-relaxed font-light mb-8">
-                    Programmation des stratégies de combat d'un robot autonome. J'ai travaillé sur l'optimisation des algorithmes de détection avec des capteurs ultrasoniques et la gestion des temps de réponse moteurs.
-                </p>
-                <div class="flex flex-wrap gap-2 mb-8">
-                    <span class="tag-tech">C++</span>
-                    <span class="tag-tech">Capteurs / Actionneurs</span>
-                    <span class="tag-tech">Algorithmes</span>
+                <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
+                    <span class="tag-tech">C++</span><span class="tag-tech">Algorithmes</span><span class="tag-tech">Temps réel</span>
                 </div>
-                <div class="flex gap-2 border-t border-gray-200 pt-6">
-                    <span class="tag-comp">Implanter</span>
-                    <span class="tag-comp">Maintenir</span>
+                <div class="flex gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                    Cliquez pour voir les détails →
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card flex flex-col md:flex-row-reverse items-center gap-16 reveal-up"
+            data-title="Run Tracker"
+            data-img="https://images.unsplash.com/photo-1526506190544-245c36398b1b?auto=format&fit=crop&q=80&w=1200"
+            data-context="Projet Personnel // Application Mobile"
+            data-tech="Développement Mobile, API Géolocalisation, Base de données, UI/UX"
+            data-desc="Une application mobile pensée et développée sur mon temps libre pour suivre et analyser mes performances de course à pied en temps réel."
+            data-details="Le projet mêle Frontend et Backend. L'application récupère en temps réel les données de géolocalisation du smartphone, calcule l'allure moyenne, la distance et le dénivelé grâce au traitement des trames GPS. J'ai également conçu une architecture base de données légère pour sauvegarder l'historique des sessions et tracer les parcours sur une interface cartographique.">
+            
+            <div class="w-full md:w-[55%] relative">
+                <div class="img-wrapper aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1526506190544-245c36398b1b?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">04. App Mobile</div>
+            </div>
+            
+            <div class="w-full md:w-[45%] md:text-right">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Run <br>Tracker.</h2>
+                <div class="flex flex-wrap md:justify-end gap-2 mb-8 pointer-events-none">
+                    <span class="tag-tech">App Dev</span><span class="tag-tech">GPS Data</span><span class="tag-tech">Backend</span>
+                </div>
+                <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                    Cliquez pour voir les détails →
                 </div>
             </div>
         </article>
 
     </main>
+
+    <div id="project-modal" class="fixed inset-0 z-[200] bg-[#111] text-white translate-y-full opacity-0 flex flex-col overflow-y-auto">
+        <div class="sticky top-0 bg-[#111]/90 backdrop-blur-md px-6 py-6 flex justify-between items-center z-10 border-b border-white/10">
+            <span id="modal-context" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">// Contexte</span>
+            <button id="close-modal" class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Fermer ×</button>
+        </div>
+
+        <div class="max-w-5xl mx-auto w-full px-6 pt-10 pb-32">
+            <h2 id="modal-title" class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-10">Titre</h2>
+            <img id="modal-img" src="" class="w-full h-[40vh] md:h-[60vh] object-cover rounded-[32px] mb-16 shadow-2xl">
+            
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="md:col-span-1">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6 border-b border-white/10 pb-4">Stack Technique</h3>
+                    <p id="modal-tech" class="text-sm font-light leading-relaxed text-gray-300">...</p>
+                </div>
+                <div class="md:col-span-2 space-y-10">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6 border-b border-white/10 pb-4">Aperçu du projet</h3>
+                        <p id="modal-desc" class="text-lg md:text-xl font-light leading-relaxed text-gray-200">...</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6 border-b border-white/10 pb-4">Défis & Réalisations techniques</h3>
+                        <p id="modal-details" class="text-lg md:text-xl font-light leading-relaxed text-gray-200">...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="bg-[#111] text-white py-32 px-5 mt-20 rounded-t-[48px] reveal-up">
         <div class="text-center max-w-4xl mx-auto">
@@ -147,22 +207,56 @@
     </footer>
 
     <script>
+        // 1. Apparition au scroll (Scroll Reveal)
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // Optionnel : arrêter d'observer une fois visible pour que ça reste affiché
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.15 // Se déclenche quand 15% de l'élément est visible
-            });
+            }, { threshold: 0.15 });
 
             document.querySelectorAll('.reveal-up').forEach((el) => {
                 observer.observe(el);
             });
+        });
+
+        // 2. Logique de la Modale (L'expansion du projet)
+        const modal = document.getElementById('project-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const body = document.body;
+
+        // Éléments de la modale à remplir
+        const mTitle = document.getElementById('modal-title');
+        const mImg = document.getElementById('modal-img');
+        const mContext = document.getElementById('modal-context');
+        const mTech = document.getElementById('modal-tech');
+        const mDesc = document.getElementById('modal-desc');
+        const mDetails = document.getElementById('modal-details');
+
+        // Ajouter l'événement de clic sur toutes les cartes projets
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Récupérer les données depuis le HTML (data-attributes)
+                mTitle.textContent = card.getAttribute('data-title');
+                mImg.src = card.getAttribute('data-img');
+                mContext.textContent = "// " + card.getAttribute('data-context');
+                mTech.textContent = card.getAttribute('data-tech');
+                mDesc.textContent = card.getAttribute('data-desc');
+                mDetails.textContent = card.getAttribute('data-details');
+
+                // Ouvrir la modale (Elle glisse depuis le bas)
+                modal.classList.add('modal-open');
+                body.classList.add('modal-active'); // Empêche de scroller le fond
+            });
+        });
+
+        // Fermer la modale
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('modal-open');
+            body.classList.remove('modal-active');
         });
     </script>
 </body>
