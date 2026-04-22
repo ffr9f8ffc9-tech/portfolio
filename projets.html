@@ -16,21 +16,25 @@
         .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* Tags */
-        .tag-comp { background: rgba(0,0,0,0.05); padding: 8px 18px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; border: 1px solid rgba(0,0,0,0.1); }
-        .tag-tech { background: #111; color: white; padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+        /* Tags Compétences IUT */
+        .tag-comp { background: #111; color: white; padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
 
-        /* Effet de survol sur la carte projet (Indique que c'est cliquable) */
+        /* Hover des images */
         .project-card { cursor: pointer; group; }
         .img-wrapper { overflow: hidden; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .project-card:hover .img-wrapper { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
         .img-wrapper img { transition: transform 0.7s ease; }
         .project-card:hover .img-wrapper img { transform: scale(1.05); }
 
-        /* Modale "Full Screen" (L'expansion) */
+        /* Modale "Full Screen" */
         #project-modal { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s; will-change: transform, opacity; }
         .modal-open { transform: translateY(0) !important; opacity: 1 !important; }
-        body.modal-active { overflow: hidden; } /* Bloque le scroll du fond quand le projet est ouvert */
+        body.modal-active { overflow: hidden; }
+        
+        /* iPhone Mockup CSS */
+        .iphone-frame { border: 12px solid #1a1a1a; border-radius: 40px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); background-color: #1a1a1a; }
+        .iphone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background-color: #1a1a1a; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; z-index: 10; }
+        .iphone-screen { border-radius: 28px; overflow: hidden; background-color: #000; width: 100%; height: 100%; position: relative; }
     </style>
 </head>
 <body>
@@ -50,7 +54,7 @@
 
     <header class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto reveal-up">
         <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Archive Technique</span>
-        <h1 class="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Selected <br><span class="text-gray-400 italic font-light">Works.</span></h1>
+        <h1 class="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Mes <br><span class="text-gray-400 italic font-light">Projets.</span></h1>
         <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto">
             Cliquez sur un projet pour explorer les détails techniques. Du hardware industriel aux applications mobiles de performance.
         </p>
@@ -59,9 +63,10 @@
     <main class="max-w-7xl mx-auto px-6 pb-40 space-y-32">
 
         <article class="project-card flex flex-col md:flex-row items-center gap-16 reveal-up" 
+            data-type="image"
+            data-media="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"
             data-title="Simulateur de Capteurs"
-            data-img="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"
-            data-context="Stage 2026 // Primal-Solem"
+            data-context="Projet de Stage // Primal-Solem"
             data-tech="Langage C, STM32CubeIDE, KiCad, RS485, SDI-12"
             data-desc="Ce projet a été réalisé lors de mon stage chez Primal-Solem. L'objectif était de développer un outil capable de simuler fidèlement des signaux de capteurs industriels pour valider les cartes d'acquisition en interne."
             data-details="La conception a impliqué la création d'un PCB complet sous KiCad. Côté firmware, j'ai programmé en C bas-niveau sur un microcontrôleur STM32. Le défi principal résidait dans le respect strict des timings des protocoles de communication série industriels (RS485 et SDI-12) et dans la précision de la génération des signaux analogiques.">
@@ -70,13 +75,15 @@
                 <div class="img-wrapper aspect-[4/3]">
                     <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Simulateur" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">01. Stage 2026</div>
+                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">01. Projet de Stage</div>
             </div>
             
             <div class="w-full md:w-[45%]">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Simulateur de <br>Capteurs.</h2>
                 <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
-                    <span class="tag-tech">STM32</span><span class="tag-tech">KiCad</span><span class="tag-tech">Firmware C</span>
+                    <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Vérifier</span>
                 </div>
                 <div class="flex gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     Cliquez pour voir les détails →
@@ -85,24 +92,26 @@
         </article>
 
         <article class="project-card flex flex-col md:flex-row-reverse items-center gap-16 reveal-up"
+            data-type="image"
+            data-media="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200"
             data-title="Fish'n'Chip"
-            data-img="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200"
-            data-context="SAÉ GEII // Universitaire"
+            data-context="Projet de Stage"
             data-tech="Routage PCB, KiCad, Électronique Analogique et Numérique"
-            data-desc="Projet universitaire axé sur la conception matérielle (Hardware). Le but était de concevoir et router une carte électronique complexe."
+            data-desc="Projet axé sur la conception matérielle (Hardware). Le but était de concevoir et router une carte électronique complexe."
             data-details="Le projet a nécessité une analyse approfondie des contraintes de routage haute densité. J'ai dû prendre en compte l'intégrité du signal, l'adaptation d'impédance et le placement stratégique des plans de masse et d'alimentation pour minimiser le bruit électromagnétique (CEM).">
             
             <div class="w-full md:w-[55%] relative">
                 <div class="img-wrapper aspect-[4/3]">
                     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">02. SAÉ GEII</div>
+                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">02. Projet de Stage</div>
             </div>
             
             <div class="w-full md:w-[45%] md:text-right">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Fish'n'<br>Chip.</h2>
                 <div class="flex flex-wrap md:justify-end gap-2 mb-8 pointer-events-none">
-                    <span class="tag-tech">Routage PCB</span><span class="tag-tech">Hardware</span>
+                    <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Vérifier</span>
                 </div>
                 <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     Cliquez pour voir les détails →
@@ -111,9 +120,10 @@
         </article>
 
         <article class="project-card flex flex-col md:flex-row items-center gap-16 reveal-up"
+            data-type="image"
+            data-media="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200"
             data-title="Robot Sumo"
-            data-img="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200"
-            data-context="Développement C++ // Robotique"
+            data-context="Projet Universitaire // Robotique"
             data-tech="C++, Microcontrôleurs, Capteurs ultrasoniques, Actionneurs"
             data-desc="Participation à un tournoi de robotique où l'objectif était de concevoir un robot autonome capable de détecter et pousser un adversaire hors d'un dojo."
             data-details="La partie logicielle était au cœur du projet. J'ai programmé en C++ les machines d'états (State Machines) gérant les différentes phases de combat (Recherche, Alignement, Attaque). La difficulté majeure a été la gestion temps réel des interruptions liées aux capteurs de proximité et d'infrarouge pour éviter que le robot ne sorte lui-même de l'arène.">
@@ -122,13 +132,14 @@
                 <div class="img-wrapper aspect-[4/3]">
                     <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">03. Robotique</div>
+                <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">03. Projet Universitaire</div>
             </div>
             
             <div class="w-full md:w-[45%]">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Robot <br>Sumo.</h2>
                 <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
-                    <span class="tag-tech">C++</span><span class="tag-tech">Algorithmes</span><span class="tag-tech">Temps réel</span>
+                    <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Maintenir</span>
                 </div>
                 <div class="flex gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     Cliquez pour voir les détails →
@@ -137,8 +148,9 @@
         </article>
 
         <article class="project-card flex flex-col md:flex-row-reverse items-center gap-16 reveal-up"
+            data-type="iphone"
+            data-media="demo_run_tracker.mp4" 
             data-title="Run Tracker"
-            data-img="https://images.unsplash.com/photo-1526506190544-245c36398b1b?auto=format&fit=crop&q=80&w=1200"
             data-context="Projet Personnel // Application Mobile"
             data-tech="Développement Mobile, API Géolocalisation, Base de données, UI/UX"
             data-desc="Une application mobile pensée et développée sur mon temps libre pour suivre et analyser mes performances de course à pied en temps réel."
@@ -148,16 +160,17 @@
                 <div class="img-wrapper aspect-[4/3]">
                     <img src="https://images.unsplash.com/photo-1526506190544-245c36398b1b?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">04. App Mobile</div>
+                <div class="absolute -top-4 -right-4 bg-white border border-gray-200 text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">04. Projet Personnel</div>
             </div>
             
             <div class="w-full md:w-[45%] md:text-right">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Run <br>Tracker.</h2>
                 <div class="flex flex-wrap md:justify-end gap-2 mb-8 pointer-events-none">
-                    <span class="tag-tech">App Dev</span><span class="tag-tech">GPS Data</span><span class="tag-tech">Backend</span>
+                    <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Implanter</span>
                 </div>
                 <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                    Cliquez pour voir les détails →
+                    Cliquez pour la démo vidéo →
                 </div>
             </div>
         </article>
@@ -165,14 +178,28 @@
     </main>
 
     <div id="project-modal" class="fixed inset-0 z-[200] bg-[#111] text-white translate-y-full opacity-0 flex flex-col overflow-y-auto">
-        <div class="sticky top-0 bg-[#111]/90 backdrop-blur-md px-6 py-6 flex justify-between items-center z-10 border-b border-white/10">
+        
+        <div class="sticky top-0 bg-[#111]/90 backdrop-blur-md px-6 py-6 flex justify-between items-center z-20 border-b border-white/10">
             <span id="modal-context" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">// Contexte</span>
             <button id="close-modal" class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Fermer ×</button>
         </div>
 
         <div class="max-w-5xl mx-auto w-full px-6 pt-10 pb-32">
-            <h2 id="modal-title" class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-10">Titre</h2>
-            <img id="modal-img" src="" class="w-full h-[40vh] md:h-[60vh] object-cover rounded-[32px] mb-16 shadow-2xl">
+            <h2 id="modal-title" class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-10 text-center md:text-left">Titre</h2>
+            
+            <img id="modal-img-view" src="" class="hidden w-full h-[40vh] md:h-[60vh] object-cover rounded-[32px] mb-16 shadow-2xl">
+            
+            <div id="modal-iphone-view" class="hidden flex justify-center mb-16">
+                <div class="iphone-frame w-[320px] h-[650px]">
+                    <div class="iphone-notch"></div>
+                    <div class="iphone-screen">
+                        <video id="modal-video-player" autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    </div>
+                </div>
+            </div>
             
             <div class="grid md:grid-cols-3 gap-16">
                 <div class="md:col-span-1">
@@ -207,7 +234,7 @@
     </footer>
 
     <script>
-        // 1. Apparition au scroll (Scroll Reveal)
+        // 1. Apparition au scroll
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -223,40 +250,57 @@
             });
         });
 
-        // 2. Logique de la Modale (L'expansion du projet)
+        // 2. Logique de la Modale et bascule Image / iPhone
         const modal = document.getElementById('project-modal');
         const closeModalBtn = document.getElementById('close-modal');
         const body = document.body;
 
-        // Éléments de la modale à remplir
         const mTitle = document.getElementById('modal-title');
-        const mImg = document.getElementById('modal-img');
         const mContext = document.getElementById('modal-context');
         const mTech = document.getElementById('modal-tech');
         const mDesc = document.getElementById('modal-desc');
         const mDetails = document.getElementById('modal-details');
+        
+        const mImgView = document.getElementById('modal-img-view');
+        const mIphoneView = document.getElementById('modal-iphone-view');
+        const mVideoPlayer = document.getElementById('modal-video-player');
 
-        // Ajouter l'événement de clic sur toutes les cartes projets
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', () => {
-                // Récupérer les données depuis le HTML (data-attributes)
+                // Remplissage du texte
                 mTitle.textContent = card.getAttribute('data-title');
-                mImg.src = card.getAttribute('data-img');
                 mContext.textContent = "// " + card.getAttribute('data-context');
                 mTech.textContent = card.getAttribute('data-tech');
                 mDesc.textContent = card.getAttribute('data-desc');
                 mDetails.textContent = card.getAttribute('data-details');
 
-                // Ouvrir la modale (Elle glisse depuis le bas)
+                // Gestion de l'affichage Image OU Vidéo iPhone
+                const type = card.getAttribute('data-type');
+                const mediaUrl = card.getAttribute('data-media');
+
+                if (type === 'iphone') {
+                    mImgView.classList.add('hidden');
+                    mIphoneView.classList.remove('hidden');
+                    mVideoPlayer.src = mediaUrl;
+                    mVideoPlayer.play();
+                } else {
+                    mIphoneView.classList.add('hidden');
+                    mImgView.classList.remove('hidden');
+                    mImgView.src = mediaUrl;
+                    mVideoPlayer.pause();
+                }
+
+                // Ouverture
                 modal.classList.add('modal-open');
-                body.classList.add('modal-active'); // Empêche de scroller le fond
+                body.classList.add('modal-active');
             });
         });
 
-        // Fermer la modale
+        // Fermeture
         closeModalBtn.addEventListener('click', () => {
             modal.classList.remove('modal-open');
             body.classList.remove('modal-active');
+            mVideoPlayer.pause(); // Stop la vidéo quand on ferme
         });
     </script>
 </body>
