@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sofia Sekssaoui | Ingénierie & Systèmes Embarqués</title>
+    <title>Sofia Sekssaoui | Portfolio Ingénierie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
@@ -11,11 +11,11 @@
         .section-dark { background-color: #0d0d0d; color: white; }
         .section-light { background-color: #f2f2f2; color: #000; }
         .section-orange { background-color: #ea580c; color: white; }
-        .btn-sq { border-radius: 0px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .btn-sq { border-radius: 0px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; font-weight: 700; }
         .nav-sticky { backdrop-filter: blur(20px); background: rgba(0,0,0,0.8); }
         .huge-text { font-size: 12vw; line-height: 0.8; letter-spacing: -0.04em; font-weight: 800; text-transform: uppercase; }
-        .img-profile { filter: grayscale(100%); transition: filter 0.5s ease; }
-        .img-profile:hover { filter: grayscale(0%); }
+        .profile-frame { border: 1px solid rgba(255,255,255,0.1); padding: 10px; transition: all 0.5s ease; }
+        .profile-frame:hover { border-color: #ea580c; }
     </style>
 </head>
 <body class="antialiased">
@@ -24,33 +24,31 @@
         <div class="flex items-center gap-10">
             <span class="font-extrabold tracking-tighter text-xl">S.S</span>
             <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
-                <a href="#projets" class="hover:text-orange-500 transition-colors">01. Travaux</a>
-                <a href="#experience" class="hover:text-orange-500 transition-colors">02. Expérience</a>
-                <a href="#stack" class="hover:text-orange-500 transition-colors">03. Stack</a>
-                <a href="#parcours" class="hover:text-orange-500 transition-colors">04. Parcours</a>
+                <a href="#about" class="hover:text-orange-500 transition-colors">01. Profil</a>
+                <a href="#projets" class="hover:text-orange-500 transition-colors">02. Projets</a>
+                <a href="#experience" class="hover:text-orange-500 transition-colors">03. Expérience</a>
+                <a href="#stack" class="hover:text-orange-500 transition-colors">04. Stack</a>
             </div>
         </div>
-        <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" class="btn-sq border border-white px-6 py-3 hover:bg-white hover:text-black">Télécharger CV</a>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="btn-sq border border-white px-6 py-3 hover:bg-white hover:text-black">Contact</a>
     </nav>
 
-    <header class="section-dark min-h-screen flex flex-col justify-center px-6 md:px-16 pt-24">
+    <header id="about" class="section-dark min-h-screen flex flex-col justify-center px-6 md:px-16 pt-20">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div>
                 <span class="text-orange-600 font-bold text-xs uppercase tracking-[0.4em] mb-8 block">Sofia Sekssaoui — Portfolio 2026</span>
-                <h1 class="huge-text mb-12 text-white">Future <br> <span class="text-white/20">Ingénieure</span></h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-xl leading-snug mb-10">
-                    Étudiante en 3ème année de BUT GEII à l'IUT de Montpellier. Mon parcours est guidé par la curiosité technique : de la conception hardware rigoureuse au développement firmware bas-niveau. <b>Objectif :</b> Intégrer l'INSA Rennes en ESET pour Septembre 2026.
+                <h1 class="huge-text mb-12">Curieuse<br><span class="text-white/20">& Rigoureuse</span></h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-xl leading-tight mb-10">
+                    Étudiante en BUT GEII à Montpellier et future ingénieure à l'<b>INSA Rennes</b>. Passionnée par l'électronique de précision, je passe mon temps à décortiquer les systèmes pour mieux les reconstruire. Bienvenue dans mon univers technique.
                 </p>
-                <div class="flex gap-8">
-                    <a href="mailto:sofiasekssaoui@gmail.com" class="btn-sq bg-orange-600 text-white px-10 py-5">Me contacter</a>
+                <div class="flex gap-4">
+                    <a href="#projets" class="btn-sq bg-orange-600 text-white px-10 py-5">Découvrir mes travaux</a>
+                    <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" class="btn-sq border border-white/20 text-white px-10 py-5 hover:bg-white hover:text-black">Mon CV (PDF)</a>
                 </div>
             </div>
-            <div class="hidden lg:block relative">
-                <div class="aspect-[4/5] bg-neutral-900 border border-white/5 overflow-hidden">
-                    <img src="sofia.jpg" alt="Sofia Sekssaoui" class="img-profile w-full h-full object-cover">
-                </div>
-                <div class="absolute -bottom-6 -left-6 bg-orange-600 p-8">
-                    <p class="text-xs font-bold uppercase tracking-widest text-white italic">"Concevoir avec rigueur."</p>
+            <div class="flex justify-center lg:justify-end">
+                <div class="profile-frame w-full max-w-sm">
+                    <img src="sofia.jpg" alt="Sofia Sekssaoui" class="w-full grayscale hover:grayscale-0 transition-all duration-700">
                 </div>
             </div>
         </div>
@@ -63,67 +61,78 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
-            <div class="md:col-span-2 bg-black text-white p-12 flex flex-col lg:flex-row gap-12 hover:bg-orange-600 transition-all duration-500 group">
-                <div class="lg:w-1/2">
-                    <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-600 group-hover:text-white mb-6 block">// Stage Primal-Solem // 2026</span>
-                    <h3 class="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter">Simulateur <br> Capteurs</h3>
-                    <p class="text-gray-400 group-hover:text-white/80 text-lg mb-8 leading-tight">
-                        Conception intégrale d'un simulateur de signaux industriels. Un projet mêlant électronique haute fidélité et programmation de précision.
+            <div class="md:col-span-2 bg-black text-white p-12 flex flex-col md:flex-row gap-12 hover:bg-orange-600 transition-all duration-500 group">
+                <div class="md:w-1/2">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-600 group-hover:text-white mb-6 block">// Projet Phare - Stage 2026</span>
+                    <h3 class="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Simulateur <br> Capteurs</h3>
+                    <p class="text-gray-400 group-hover:text-white/90 text-lg mb-8 leading-tight">
+                        Développement d'un outil industriel chez Primal-Solem pour simuler des signaux de haute précision. Un pont entre firmware complexe et hardware robuste.
                     </p>
-                    <div class="grid grid-cols-2 gap-2 text-[9px] font-bold uppercase tracking-widest">
-                        <div class="border border-white/20 p-3">RS485 / SDI-12</div>
-                        <div class="border border-white/20 p-3">ADC / Pulse / TOR</div>
+                    <div class="flex gap-3">
+                         <span class="text-[9px] border border-white/30 px-3 py-1 group-hover:border-white">RS485</span>
+                         <span class="text-[9px] border border-white/30 px-3 py-1 group-hover:border-white">SDI-12</span>
+                         <span class="text-[9px] border border-white/30 px-3 py-1 group-hover:border-white">ADC</span>
                     </div>
                 </div>
-                <div class="lg:w-1/2 bg-white/5 border border-white/10 flex flex-col justify-center items-center p-10 text-center space-y-4">
-                    <p class="text-4xl italic font-light opacity-30 group-hover:opacity-100 transition-opacity">KiCad PCB</p>
-                    <p class="text-5xl italic font-black group-hover:scale-110 transition-transform">Language C</p>
-                    <p class="text-4xl italic font-light opacity-30 group-hover:opacity-100 transition-opacity">STM32 CubeIDE</p>
+                <div class="md:w-1/2 flex items-center justify-center bg-white/5 border border-white/10">
+                    <div class="text-center p-8">
+                        <span class="block text-4xl font-light italic mb-2">PCB Design</span>
+                        <span class="block text-5xl font-black uppercase italic">Language C</span>
+                        <span class="block text-4xl font-light italic mt-2">STM32 Expert</span>
+                    </div>
                 </div>
             </div>
 
             <div class="bg-white p-12 border border-black/5 hover:bg-black hover:text-white transition-all group">
                 <span class="text-[10px] font-bold uppercase tracking-widest mb-10 block opacity-50">SAÉ GEII // Universitaire</span>
                 <h3 class="text-4xl font-extrabold uppercase mb-6">Fish'n'Chip</h3>
-                <p class="text-sm leading-relaxed mb-8">Conception électronique et routage complexe. Gestion de l'intégrité des signaux et fabrication de la carte.</p>
-                <span class="text-[9px] border border-current px-2 py-1 uppercase font-bold">Hardware</span>
+                <p class="text-sm leading-relaxed mb-8">Routage et design de carte électronique haute densité. Optimisation du placement des composants et intégrité du signal.</p>
+                <div class="flex gap-2 opacity-50 group-hover:opacity-100">
+                    <span class="text-[9px] border border-current px-2 py-1">Hardware</span>
+                    <span class="text-[9px] border border-current px-2 py-1">Routage</span>
+                </div>
             </div>
             <div class="bg-white p-12 border border-black/5 hover:bg-black hover:text-white transition-all group">
-                <span class="text-[10px] font-bold uppercase tracking-widest mb-10 block opacity-50">Personnel // Mobile App</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-10 block opacity-50">Robotique // C++</span>
+                <h3 class="text-4xl font-extrabold uppercase mb-6">Robot Sumo</h3>
+                <p class="text-sm leading-relaxed mb-8">Programmation de stratégies autonomes. Gestion du temps réel et des capteurs de proximité ultrasoniques.</p>
+                <div class="flex gap-2 opacity-50 group-hover:opacity-100">
+                    <span class="text-[9px] border border-current px-2 py-1">C++</span>
+                    <span class="text-[9px] border border-current px-2 py-1">Real-time</span>
+                </div>
+            </div>
+            <div class="bg-white p-12 border border-black/5 hover:bg-orange-600 hover:text-white transition-all group">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-10 block opacity-50">Personnel // App</span>
                 <h3 class="text-4xl font-extrabold uppercase mb-6">Run Tracker</h3>
-                <p class="text-sm leading-relaxed mb-8">Application de suivi GPS et analyse de performance. Développement de l'interface et gestion de base de données.</p>
-                <span class="text-[9px] border border-current px-2 py-1 uppercase font-bold">App Development</span>
+                <p class="text-sm leading-relaxed mb-8">Backend et Frontend pour le suivi GPS sportif. Analyse des données de performance en temps réel.</p>
             </div>
         </div>
     </section>
 
     <section id="experience" class="section-dark py-32 px-6 md:px-16">
         <div class="max-w-4xl">
-            <h2 class="text-5xl font-extrabold uppercase mb-20 tracking-tighter">Expérience <br><span class="text-orange-600 italic font-light">Professionnelle.</span></h2>
-            
-            <div class="space-y-16">
+            <h2 class="text-5xl font-extrabold uppercase mb-20 tracking-tighter">Mon Parcours <br><span class="text-orange-600 italic font-light">Professionnel.</span></h2>
+            <div class="space-y-20">
                 <div class="grid md:grid-cols-3 border-t border-white/10 pt-10">
-                    <div class="text-gray-500 font-bold text-xs uppercase tracking-widest">2026</div>
+                    <div class="text-gray-500 font-bold text-xs uppercase tracking-widest">Jan — Mai 2026</div>
                     <div class="md:col-span-2">
                         <h4 class="text-2xl font-bold uppercase">Primal-Solem</h4>
-                        <p class="text-orange-600 text-[10px] font-bold uppercase mb-4 tracking-widest">Stage Assistante Ingénieure SE</p>
-                        <p class="text-gray-400 text-sm leading-relaxed italic">Conception Hardware, Firmware C, RS485 et SDI-12.</p>
+                        <p class="text-orange-600 text-xs font-bold uppercase mt-1 mb-4 italic">Assistante Ingénieure SE</p>
+                        <p class="text-gray-400 text-sm leading-relaxed italic">Simulateur de capteurs, RS485, SDI-12, Firmware C.</p>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-3 border-t border-white/10 pt-10">
                     <div class="text-gray-500 font-bold text-xs uppercase tracking-widest">2025</div>
                     <div class="md:col-span-2">
                         <h4 class="text-2xl font-bold uppercase">CNRS - LIRMM</h4>
-                        <p class="text-orange-600 text-[10px] font-bold uppercase mb-4 tracking-widest">Stage Développement Embarqué</p>
-                        <p class="text-gray-400 text-sm leading-relaxed italic">Dév. bibliothèque Argos et communication UART.</p>
+                        <p class="text-orange-600 text-xs font-bold uppercase mt-1 mb-4 italic">Développement Embarqué</p>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-3 border-t border-white/10 pt-10">
                     <div class="text-gray-500 font-bold text-xs uppercase tracking-widest">2024 - Présent</div>
                     <div class="md:col-span-2">
                         <h4 class="text-2xl font-bold uppercase">LIDL</h4>
-                        <p class="text-orange-600 text-[10px] font-bold uppercase mb-4 tracking-widest">Préparatrice de commandes</p>
-                        <p class="text-gray-400 text-sm leading-relaxed italic">Rigueur opérationnelle et gestion des flux.</p>
+                        <p class="text-orange-600 text-xs font-bold uppercase mt-1 mb-4 italic">Préparatrice de commandes</p>
                     </div>
                 </div>
             </div>
@@ -134,20 +143,18 @@
         <div class="grid md:grid-cols-2 gap-20">
             <div>
                 <h2 class="text-5xl font-black uppercase mb-10">Stack<br>Technique</h2>
-                <div class="flex flex-wrap gap-3">
-                    <span class="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest">Langage C</span>
-                    <span class="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest">C++</span>
-                    <span class="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest">KiCad</span>
-                    <span class="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest">STM32</span>
-                    <span class="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest">VHDL</span>
+                <div class="flex flex-wrap gap-3 text-black">
+                    <span class="px-6 py-3 bg-white font-bold uppercase text-[10px]">Langage C / C++</span>
+                    <span class="px-6 py-3 bg-white font-bold uppercase text-[10px]">KiCad / Routage</span>
+                    <span class="px-6 py-3 bg-white font-bold uppercase text-[10px]">STM32 / CubeIDE</span>
+                    <span class="px-6 py-3 bg-white font-bold uppercase text-[10px]">VHDL / FPGA</span>
                 </div>
             </div>
             <div>
-                <h2 class="text-5xl font-black uppercase mb-10">Certifications</h2>
+                <h2 class="text-5xl font-black uppercase mb-10">Aptitudes</h2>
                 <div class="space-y-4">
-                    <p class="text-2xl font-bold uppercase border-b border-white/20 pb-4">BNSSA (Sécurité Aquatique)</p>
-                    <p class="text-2xl font-bold uppercase border-b border-white/20 pb-4">Premiers Secours (PSE1)</p>
-                    <p class="text-2xl font-bold uppercase border-b border-white/20 pb-4">Permis B</p>
+                    <p class="text-2xl font-bold uppercase border-b border-white/20 pb-4">BNSSA (Secourisme)</p>
+                    <p class="text-2xl font-bold uppercase border-b border-white/20 pb-4">Rigueur Industrielle</p>
                 </div>
             </div>
         </div>
@@ -156,8 +163,11 @@
     <footer id="parcours" class="section-light py-32 px-6 md:px-16 text-center">
         <h2 class="huge-text mb-12">INSA<br><span class="text-orange-600">RENNES</span></h2>
         <p class="text-xl font-bold uppercase tracking-widest mb-12">Septembre 2026 — Spécialité ESET</p>
-        <a href="mailto:sofiasekssaoui@gmail.com" class="btn-sq bg-black text-white px-16 py-8 text-lg">Envoyer un mail</a>
-        <p class="mt-20 text-[10px] font-bold uppercase tracking-widest opacity-30">© 2026 Sofia Sekssaoui — IUT Montpellier Sète</p>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="btn-sq bg-black text-white px-16 py-8 text-lg">Contactez-moi</a>
+        <div class="mt-20 flex justify-center gap-10 opacity-30 text-[10px] font-bold uppercase tracking-widest">
+            <span>© 2026 Sofia Sekssaoui</span>
+            <span>BUT GEII Montpellier</span>
+        </div>
     </footer>
 
 </body>
