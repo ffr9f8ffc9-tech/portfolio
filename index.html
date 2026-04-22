@@ -7,18 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* On débloque le défilement global de la page */
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* --- 1. SECTION HERO (100vh avec overflow hidden) --- */
+        /* --- 1. SECTION HERO ORBITAL --- */
         .hero-section { position: relative; height: 100vh; width: 100vw; overflow: hidden; }
-
         .orbit-container { position: absolute; top: 50%; left: 50%; width: 0; height: 0; z-index: 1; animation: spin 45s linear infinite; }
-        .pos-1 { top: 0px; left: 380px; }
-        .pos-2 { top: 361px; left: 117px; }
-        .pos-3 { top: 223px; left: -307px; }
-        .pos-4 { top: -223px; left: -307px; }
-        .pos-5 { top: -361px; left: 117px; }
+        .pos-1 { top: 0px; left: 380px; } .pos-2 { top: 361px; left: 117px; } .pos-3 { top: 223px; left: -307px; } .pos-4 { top: -223px; left: -307px; } .pos-5 { top: -361px; left: 117px; }
         .orbit-wrapper { position: absolute; transform: translate(-50%, -50%); }
         .orbit-img { border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); animation: anti-spin 45s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -32,37 +26,20 @@
         .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
 
         /* --- 2. SECTION SCROLL REVEAL --- */
-        .reveal-wrapper { position: relative; height: 300vh; /* Permet de scroller longtemps pour l'animation */ }
+        .reveal-wrapper { position: relative; height: 300vh; }
         .sticky-container { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-        
         .expand-pill {
-            position: relative;
-            width: 140px; /* Taille de départ */
-            height: 60px; /* Taille de départ */
-            border-radius: 100px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            will-change: width, height, border-radius;
-            transform: translateZ(0); /* Accélération matérielle */
+            position: relative; width: 140px; height: 60px; border-radius: 100px; overflow: hidden; display: flex; align-items: center; justify-content: center; will-change: width, height, border-radius; transform: translateZ(0);
         }
-        
-        .reveal-text-left, .reveal-text-right {
-            will-change: transform, opacity;
-        }
+        .reveal-text-left, .reveal-text-right { will-change: transform, opacity; }
+        .inner-reveal-content { position: absolute; color: white; text-align: center; opacity: 0; will-change: opacity; z-index: 10; }
 
-        .inner-reveal-content {
-            position: absolute;
-            color: white;
-            text-align: center;
-            opacity: 0; /* Caché au début */
-            will-change: opacity;
-            z-index: 10;
-        }
-
-        /* --- 3. SECTION SUIVANTE (PROJETS) --- */
-        .next-section { min-height: 100vh; background-color: white; padding: 100px 5%; display: flex; align-items: center; justify-content: center; }
+        /* --- 3. SECTION GRILLE PROJETS --- */
+        .projects-section { background-color: #111; color: white; padding: 120px 5%; min-height: 100vh; border-top-left-radius: 40px; border-top-right-radius: 40px; margin-top: -40px; position: relative; z-index: 20; }
+        .project-card { border-radius: 32px; overflow: hidden; position: relative; group; cursor: pointer; }
+        .project-img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-card:hover .project-img { transform: scale(1.05); }
+        .tag { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 4px 12px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -101,7 +78,7 @@
         </div>
         
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 animate-bounce">
-            Keep Scrolling ↓
+            Scroll pour explorer ↓
         </div>
     </header>
 
@@ -109,32 +86,78 @@
         <div class="sticky-container">
             <div class="flex items-center justify-center gap-4 text-5xl md:text-8xl font-extrabold tracking-tighter w-full px-4">
                 
-                <span id="text-left" class="reveal-text-left">Conception</span>
+                <span id="text-left" class="reveal-text-left">De l'idée</span>
                 
-                <div id="expand-pill" class="expand-pill bg-gray-300">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                <div id="expand-pill" class="expand-pill bg-black">
+                    <img src="https://images.unsplash.com/photo-1518932945647-7a3c969015ce?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity">
                     
-                    <div id="inner-content" class="inner-reveal-content">
-                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-4">L'ingénierie sur-mesure.</h2>
-                        <p class="text-lg md:text-xl font-light opacity-80">Routage, Firmware & Systèmes Embarqués</p>
+                    <div id="inner-content" class="inner-reveal-content px-10">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300 mb-6 block">// Mon Expertise</span>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6">Hardware & Firmware.</h2>
+                        <p class="text-lg md:text-xl font-light text-gray-300 max-w-2xl mx-auto">
+                            Je conçois des architectures électroniques robustes et j'écris le code bas-niveau qui leur donne vie. La maîtrise totale de la chaîne d'acquisition.
+                        </p>
                     </div>
                 </div>
                 
-                <span id="text-right" class="reveal-text-right">Embarquée</span>
+                <span id="text-right" class="reveal-text-right">Au système</span>
 
             </div>
         </div>
     </section>
 
-    <section class="next-section">
-        <div class="text-center">
-            <h2 class="text-6xl md:text-9xl font-extrabold tracking-tighter">Work°</h2>
-            <p class="mt-6 text-gray-500 uppercase tracking-widest text-xs font-bold">La suite de tes projets ici...</p>
+    <section class="projects-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-20 border-b border-white/10 pb-10">
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter">Sélection <br><span class="text-gray-500 italic font-light">de travaux.</span></h2>
+                <a href="projets.html" class="text-xs font-bold uppercase tracking-widest hover:text-gray-400">Voir tout →</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <div class="project-card md:col-span-2 bg-[#1a1a1a] p-10 flex flex-col md:flex-row gap-10 items-center">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="project-img w-full h-full object-cover opacity-80">
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="tag">Stage 2026</span>
+                            <span class="tag">Primal-Solem</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Simulateur de Capteurs.</h3>
+                        <p class="text-gray-400 text-lg font-light mb-8">Développement d'un outil de simulation industriel. Routage PCB, Firmware C sur STM32 et intégration des protocoles RS485 / SDI-12.</p>
+                        <div class="flex gap-2">
+                            <span class="tag">KiCad</span><span class="tag">Language C</span><span class="tag">STM32</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-[#1a1a1a] p-8">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
+                        <div class="absolute top-4 left-4 flex gap-2"><span class="tag">Universitaire</span></div>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">Fish'n'Chip</h3>
+                    <p class="text-gray-400 font-light mb-6">Conception et routage d'une carte électronique haute densité. Focus sur l'intégrité du signal.</p>
+                    <span class="tag">Hardware Design</span>
+                </div>
+
+                <div class="project-card bg-[#1a1a1a] p-8">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
+                        <div class="absolute top-4 left-4 flex gap-2"><span class="tag">Robotique</span></div>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">Robot Sumo</h3>
+                    <p class="text-gray-400 font-light mb-6">Programmation d'algorithmes de combat autonome en C++. Gestion temps réel des capteurs.</p>
+                    <span class="tag">C++</span><span class="tag">Algorithmes</span>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <script>
-        // 1. Rotation 3D du texte Hero
+        // 1. Rotation 3D
         const slides = document.querySelectorAll('.slide');
         let current = 0;
         setInterval(() => {
@@ -147,7 +170,7 @@
             setTimeout(() => { slides[prev].classList.remove('exit'); }, 1000); 
         }, 4000);
 
-        // 2. Animation Scroll Reveal Fluide (Lerp)
+        // 2. Animation Scroll Reveal
         const revealSection = document.getElementById('reveal-section');
         const pill = document.getElementById('expand-pill');
         const textLeft = document.getElementById('text-left');
@@ -157,47 +180,30 @@
         let targetScroll = 0;
         let currentScroll = 0;
 
-        window.addEventListener('scroll', () => {
-            targetScroll = window.scrollY;
-        });
+        window.addEventListener('scroll', () => { targetScroll = window.scrollY; });
 
         function animateScroll() {
-            // Lerp pour fluidifier le mouvement (effet beurre)
             currentScroll += (targetScroll - currentScroll) * 0.08;
-
             const rect = revealSection.getBoundingClientRect();
-            // On calcule où on en est dans la section reveal (de 0 à 1)
             let progress = 0;
             
-            // Si le haut de la section touche le haut de l'écran
             if (rect.top <= 0) {
-                // Le dénominateur = hauteur totale - 1 écran (pour finir l'anim juste avant de quitter la section)
                 progress = Math.min(1, Math.max(0, Math.abs(rect.top) / (rect.height - window.innerHeight)));
             }
 
-            // --- CALCUL DES TRANSFORMATIONS ---
-            // Largeur : 140px -> 94vw
             const w = 140 + ((window.innerWidth * 0.94) - 140) * progress;
-            // Hauteur : 60px -> 85vh
             const h = 60 + ((window.innerHeight * 0.85) - 60) * progress;
-            // Border Radius : 100px -> 40px
             const br = 100 - (100 - 40) * progress;
 
-            // Application à la pilule
             pill.style.width = `${w}px`;
             pill.style.height = `${h}px`;
             pill.style.borderRadius = `${br}px`;
 
-            // Écartement des textes ("Conception" vers la gauche, "Embarquée" vers la droite)
-            // On ajoute aussi une baisse d'opacité pour qu'ils disparaissent
             textLeft.style.transform = `translateX(${-100 * progress}vw)`;
             textLeft.style.opacity = 1 - (progress * 2);
-            
             textRight.style.transform = `translateX(${100 * progress}vw)`;
             textRight.style.opacity = 1 - (progress * 2);
 
-            // Apparition du texte interne ("L'ingénierie sur-mesure")
-            // N'apparaît que dans les derniers 30% du scroll
             if(progress > 0.7) {
                 innerContent.style.opacity = (progress - 0.7) * 3.33;
                 innerContent.style.transform = `translateY(${20 - ((progress - 0.7) * 20 * 3.33)}px)`;
@@ -207,8 +213,6 @@
 
             requestAnimationFrame(animateScroll);
         }
-
-        // Lancement de la boucle d'animation
         animateScroll();
     </script>
 </body>
