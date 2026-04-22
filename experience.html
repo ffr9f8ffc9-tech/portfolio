@@ -1,45 +1,145 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><title>Expérience | Sofia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expériences | Sofia Sekssaoui</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-up.visible { opacity: 1; transform: translateY(0); }
+
+        .tag-work { background: #111; color: white; padding: 8px 20px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; display: inline-block; }
+        .tag-skill { border: 1px solid rgba(0,0,0,0.1); padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #555; background: white; }
+
+        .exp-card { background: white; border-radius: 40px; padding: 50px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s ease; }
+        .exp-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+
+        .company-name { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: #aaa; margin-bottom: 8px; display: block; }
+    </style>
 </head>
-<body class="bg-[#fafafa] font-['Inter'] px-8 md:px-20">
-    <nav class="flex justify-between items-center py-12">
-        <a href="index.html" class="text-[11px] font-semibold uppercase tracking-[0.5em]">Sekssaoui</a>
-        <div class="flex space-x-10 text-[10px] font-medium uppercase tracking-[0.2em]">
-            <a href="projets.html" class="hover:underline underline-offset-4">Projets</a>
-            <a href="experience.html" class="text-gray-400">Expérience</a>
-            <a href="academique.html" class="hover:underline underline-offset-4">Parcours</a>
+<body>
+
+    <nav class="fixed top-8 w-full z-[100] flex justify-center gap-4 px-4 pointer-events-none">
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 transition-all hover:bg-white/90">
+            <a href="https://file.garden/aeij_fhnrxe8Mmog/CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">CV</a>
+            <a href="https://www.linkedin.com/in/sofia-sekssaoui" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
+        </div>
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 overflow-x-auto whitespace-nowrap no-scrollbar transition-all hover:bg-white/90 max-w-[60vw] md:max-w-none">
+            <a href="index.html" class="hover:text-black transition-colors">Accueil</a>
+            <a href="projets.html" class="hover:text-black transition-colors">Projets</a>
+            <a href="experience.html" class="text-black transition-colors pointer-events-none">Expériences</a>
+            <a href="academique.html" class="hover:text-black transition-colors">Parcours</a>
         </div>
     </nav>
-    <div class="max-w-3xl mt-10">
-        <div class="mb-20">
-            <h3 class="text-xs font-bold uppercase tracking-widest mb-6">Professionnel</h3>
-            <div class="space-y-12">
+
+    <header class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto reveal-up">
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Mon parcours professionnel</span>
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-8 leading-tight italic">Expériences.</h1>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pb-20 space-y-10">
+
+        <article class="exp-card reveal-up">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
-                    <div class="flex justify-between items-baseline border-b border-gray-100 pb-2">
-                        <h4 class="font-semibold text-lg">Primal-Solem</h4>
-                        <span class="text-[10px] text-gray-400">2026</span>
-                    </div>
-                    <p class="text-xs uppercase mt-2 text-gray-500 tracking-tighter">Assistante Ingénieure SE (Stage)</p>
+                    <span class="company-name">Primal-Solem — Montpellier</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Stagiaire Assistante Ingénieure</h2>
                 </div>
-                <div>
-                    <div class="flex justify-between items-baseline border-b border-gray-100 pb-2">
-                        <h4 class="font-semibold text-lg">CNRS - LIRMM</h4>
-                        <span class="text-[10px] text-gray-400">2025</span>
-                    </div>
-                    <p class="text-xs uppercase mt-2 text-gray-500 tracking-tighter">Développement Embarqué (Stage)</p>
-                </div>
-                <div>
-                    <div class="flex justify-between items-baseline border-b border-gray-100 pb-2">
-                        <h4 class="font-semibold text-lg">LIDL</h4>
-                        <span class="text-[10px] text-gray-400">2024—Présent</span>
-                    </div>
-                    <p class="text-xs uppercase mt-2 text-gray-500 tracking-tighter">Préparatrice de commandes</p>
-                </div>
+                <span class="tag-work">Jan. 2026 — Mai 2026</span>
             </div>
-        </div>
-    </div>
+            <p class="text-gray-500 font-light leading-relaxed mb-8 text-lg">
+                Développement d'un outil d'analyse interne : un simulateur de capteurs. Conception complète du schéma électronique, développement du firmware en C et intégration de protocoles industriels (ADC, TOR, RS485).
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag-skill">Langage C</span>
+                <span class="tag-skill">Hardware Design</span>
+                <span class="tag-skill">RS485/SDI-12</span>
+                <span class="tag-skill">Banc de Test</span>
+            </div>
+        </article>
+
+        <article class="exp-card reveal-up">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+                <div>
+                    <span class="company-name">CNRS-LIRMM — Montpellier</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Stagiaire en Développement Embarqué</h2>
+                </div>
+                <span class="tag-work">Fév. 2025 — Avr. 2025</span>
+            </div>
+            <p class="text-gray-500 font-light leading-relaxed mb-8 text-lg">
+                Développement d'une bibliothèque de communication Argos sous STM32CubeIDE. Mise en place de liaisons UART et migration de projets vers des environnements récents.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag-skill">STM32CubeIDE</span>
+                <span class="tag-skill">UART</span>
+                <span class="tag-skill">Argos</span>
+                <span class="tag-skill">Débogage</span>
+            </div>
+        </article>
+
+        <article class="exp-card reveal-up">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+                <div>
+                    <span class="company-name">LIDL — Béziers</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Préparatrice de Commande</h2>
+                </div>
+                <span class="tag-work">Oct. 2024 — Présent</span>
+            </div>
+            <p class="text-gray-500 font-light leading-relaxed mb-8 text-lg">
+                Poste étudiant exigeant rigueur et gestion du temps en environnement réfrigéré. Utilisation de systèmes de commande vocale et respect strict des flux logistiques.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag-skill">Rigueur</span>
+                <span class="tag-skill">Logistique</span>
+                <span class="tag-skill">Travail d'équipe</span>
+            </div>
+        </article>
+
+        <article class="exp-card reveal-up">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+                <div>
+                    <span class="company-name">Ville de Clermont l'Hérault</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Sauveteur Aquatique (BNSSA)</h2>
+                </div>
+                <span class="tag-work">Été 2023</span>
+            </div>
+            <p class="text-gray-500 font-light leading-relaxed mb-8 text-lg">
+                Surveillance de bassin et sécurité du public. Diplôme obtenu en 2023, témoignant d'un sens des responsabilités et d'une réactivité face aux situations d'urgence.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag-skill">Secourisme</span>
+                <span class="tag-skill">Responsabilité</span>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="mt-10 mb-10 pt-10 border-t border-black/10 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 reveal-up">
+        © 2026 Sofia Sekssaoui — Expériences Professionnelles
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
