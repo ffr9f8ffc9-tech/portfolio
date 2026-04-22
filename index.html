@@ -7,125 +7,81 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --sq-bg: #f9f9f9; --sq-text: #1a1a1a; --sq-gray: #757575; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: white; color: var(--sq-text); scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f6f6f6; color: #1a1a1a; overflow: hidden; }
         
-        /* Menu Coulissant de côté */
-        #side-menu {
-            transform: translateX(100%);
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-            background: white;
+        /* Floating Images */
+        .floating-img { position: absolute; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
+        .floating-img:hover { transform: scale(1.05) translateY(-10px); }
+        
+        /* Positions des images comme sur ta vidéo */
+        .img-1 { top: 15%; left: 5%; width: 220px; height: 160px; transform: rotate(-5deg); }
+        .img-2 { top: 10%; right: 10%; width: 180px; height: 240px; transform: rotate(3deg); }
+        .img-3 { bottom: 15%; left: 10%; width: 140px; height: 180px; transform: rotate(2deg); }
+        .img-4 { bottom: 10%; right: 15%; width: 200px; height: 200px; transform: rotate(-3deg); }
+        .img-center-low { bottom: 5%; left: 50%; transform: translateX(-50%); width: 120px; height: 160px; }
+
+        /* Text Animation Logic */
+        .word-flicker { display: inline-block; animation: flicker 3s infinite; }
+        @keyframes flicker {
+            0%, 20% { opacity: 0; transform: translateY(10px); }
+            25%, 75% { opacity: 1; transform: translateY(0); }
+            80%, 100% { opacity: 0; transform: translateY(-10px); }
         }
-        #side-menu.open { transform: translateX(0); }
-        .overlay { opacity: 0; pointer-events: none; transition: opacity 0.5s; background: rgba(0,0,0,0.1); }
-        .overlay.open { opacity: 1; pointer-events: auto; }
 
-        /* Boutons Pill Style Squarespace */
-        .btn-pill { border-radius: 9999px; transition: all 0.25s ease; }
-        .btn-pill-dark { background: var(--sq-text); color: white; border: 1px solid var(--sq-text); }
-        .btn-pill-dark:hover { background: #333; transform: translateY(-2px); }
-        .btn-pill-light { background: transparent; border: 1px solid #e0e0e0; color: var(--sq-text); }
-        .btn-pill-light:hover { background: #f5f5f5; border-color: #ccc; }
-
-        /* Sections avec gros arrondis */
-        .section-block { border-radius: 48px; background: var(--sq-bg); padding: 80px 40px; margin: 10px; }
-        .huge-title { font-size: clamp(3rem, 10vw, 8.5rem); line-height: 0.85; font-weight: 800; letter-spacing: -0.04em; }
-        
-        .photo-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
+        /* Menu Style Pill */
+        .pill-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border-radius: 999px; padding: 8px 24px; border: 1px solid rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="antialiased">
+<body class="h-screen flex items-center justify-center">
 
-    <div id="menu-overlay" onclick="toggleMenu()" class="overlay fixed inset-0 z-[60]"></div>
-
-    <nav class="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center backdrop-blur-md bg-white/80 border-b border-gray-100">
-        <div class="flex items-center gap-4">
-            <img src="sofia.jpg" alt="Sofia" class="photo-avatar">
-            <span class="font-bold text-[13px] tracking-tight">SOFIA SEKSSAOUI</span>
+    <nav class="fixed top-8 right-8 z-50 flex items-center gap-4">
+        <div class="pill-nav flex gap-8 text-[11px] font-bold uppercase tracking-widest">
+            <a href="projets.html" class="hover:opacity-50">Works</a>
+            <a href="experience.html" class="hover:opacity-50">Blog</a>
         </div>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleMenu()" class="btn-pill btn-pill-dark px-7 py-3 text-[11px] font-bold uppercase tracking-widest">
-                Menu
-            </button>
-        </div>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest">Contact</a>
     </nav>
 
-    <div id="side-menu" class="fixed inset-y-0 right-0 w-full md:w-[500px] z-[70] p-10 flex flex-col justify-between shadow-2xl">
-        <div>
-            <div class="flex justify-between items-center mb-20">
-                <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Sommaire</span>
-                <button onclick="toggleMenu()" class="text-2xl font-light hover:rotate-90 transition-transform">✕</button>
-            </div>
-            <nav class="space-y-6">
-                <a href="projets.html" class="block text-5xl font-extrabold tracking-tighter hover:text-gray-400 transition-colors uppercase">Projets</a>
-                <a href="experience.html" class="block text-5xl font-extrabold tracking-tighter hover:text-gray-400 transition-colors uppercase">Expérience</a>
-                <a href="academique.html" class="block text-5xl font-extrabold tracking-tighter hover:text-gray-400 transition-colors uppercase">Parcours</a>
-            </nav>
-        </div>
-        <div class="border-t border-gray-100 pt-10">
-            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" class="btn-pill btn-pill-light px-8 py-4 text-[11px] font-bold uppercase tracking-widest inline-block mb-6 w-full text-center">Télécharger mon CV</a>
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Montpellier — INSA Rennes 2026</p>
-        </div>
+    <div class="img-1 floating-img bg-gray-200"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
+    <div class="img-2 floating-img bg-gray-300"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
+    <div class="img-3 floating-img bg-gray-400"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
+    <div class="img-4 floating-img bg-gray-500"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
+    <div class="img-center-low floating-img bg-gray-600"><img src="sofia.jpg" class="w-full h-full object-cover grayscale"></div>
+
+    <div class="text-center z-10">
+        <h2 class="text-[120px] font-extrabold tracking-tighter leading-none mb-4">
+            <span id="dynamic-word" class="word-flicker">Systems</span> <br>
+            <span class="text-gray-300 italic font-light">that perform</span>
+        </h2>
+        <p class="text-[13px] font-bold uppercase tracking-[0.4em] mb-10">Sofia SEKSSAOUI</p>
+        <a href="projets.html" class="bg-black text-white px-12 py-6 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform inline-block">Learn more</a>
     </div>
 
-    <main class="mt-24">
-        
-        <section class="min-h-[85vh] flex flex-col justify-center px-6 md:px-16 mb-4">
-            <div class="max-w-7xl mx-auto w-full">
-                <h1 class="huge-title mb-10">
-                    Apprendre <br> à me <span class="italic text-gray-200">connaître.</span>
-                </h1>
-                <div class="grid md:grid-cols-2 gap-12 mt-16 items-start">
-                    <p class="text-lg md:text-xl text-gray-500 leading-tight font-normal max-w-md">
-                        Sofia Sekssaoui. Future ingénieure en systèmes embarqués. Je conçois des solutions où la rigueur du hardware rencontre l'intelligence du code.
-                    </p>
-                    <div class="flex flex-col gap-4">
-                        <a href="mailto:sofiasekssaoui@gmail.com" class="btn-pill btn-pill-dark px-10 py-5 text-[12px] font-bold uppercase tracking-widest self-start md:self-end">
-                            Me contacter
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-block mx-4 md:mx-10">
-            <div class="max-w-4xl mx-auto text-center py-10">
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-10 tracking-tighter uppercase leading-none">Un portfolio, <br> c'est quoi ?</h2>
-                <p class="text-lg md:text-xl text-gray-500 leading-relaxed font-normal max-w-2xl mx-auto">
-                    C'est l'espace où ma rigueur technique devient visible. Entre schémas KiCad et firmwares C, c'est ici que je documente mon passage du <b>BUT GEII</b> vers l'<b>INSA Rennes</b>.
-                </p>
-            </div>
-        </section>
-
-        <section class="px-4 md:px-10 py-4">
-            <div class="bg-[#1a1a1a] text-white rounded-[48px] p-12 md:p-24 text-center overflow-hidden relative">
-                <div class="absolute top-0 right-0 p-12 opacity-5 text-9xl font-black italic select-none">INSA</div>
-                <h2 class="text-5xl md:text-8xl font-extrabold mb-10 tracking-tighter uppercase leading-[0.9]">Prête pour <br> l'alternance.</h2>
-                <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light">
-                    Disponible dès septembre 2026 pour un poste en systèmes embarqués à Rennes.
-                </p>
-                <div class="flex justify-center gap-4">
-                    <a href="mailto:sofiasekssaoui@gmail.com" class="btn-pill bg-white text-black px-12 py-6 text-[12px] font-bold uppercase tracking-widest hover:bg-gray-200 transition">
-                        Envoyer un message
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="py-16 text-center text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
-        © 2026 Sofia Sekssaoui — Conçu avec précision
-    </footer>
+    <div class="fixed bottom-8 left-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-30">
+        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Montpellier, FR
+    </div>
+    <div class="fixed bottom-8 right-8 text-[10px] font-bold uppercase tracking-widest opacity-30">
+        ©2026
+    </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('side-menu');
-            const overlay = document.getElementById('menu-overlay');
-            menu.classList.toggle('open');
-            overlay.classList.toggle('open');
-            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
-        }
+        const words = ["Systems", "Hardware", "Websites", "Apps"];
+        let i = 0;
+        const wordEl = document.getElementById('dynamic-word');
+
+        setInterval(() => {
+            i = (i + 1) % words.length;
+            wordEl.textContent = words[i];
+        }, 3000);
+
+        // Effet de parallaxe léger sur les images avec la souris
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            document.querySelectorAll('.floating-img').forEach(img => {
+                img.style.transform += ` translate(${moveX}px, ${moveY}px)`;
+            });
+        });
     </script>
 </body>
 </html>
