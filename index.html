@@ -28,20 +28,26 @@
         /* --- 2. SECTION SCROLL REVEAL --- */
         .reveal-wrapper { position: relative; height: 300vh; }
         .sticky-container { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-        .expand-pill {
-            position: relative; width: 140px; height: 60px; border-radius: 100px; overflow: hidden; display: flex; align-items: center; justify-content: center; will-change: width, height, border-radius; transform: translateZ(0);
-        }
+        .expand-pill { position: relative; width: 140px; height: 60px; border-radius: 100px; overflow: hidden; display: flex; align-items: center; justify-content: center; will-change: width, height, border-radius; transform: translateZ(0); }
         .reveal-text-left, .reveal-text-right { will-change: transform, opacity; }
         .inner-reveal-content { position: absolute; color: white; text-align: center; opacity: 0; will-change: opacity; z-index: 10; }
 
         /* --- 3. SECTION GRILLE PROJETS --- */
-        .projects-section { background-color: #111; color: white; padding: 120px 5%; min-height: 100vh; border-top-left-radius: 40px; border-top-right-radius: 40px; margin-top: -40px; position: relative; z-index: 20; }
-        .project-card { border-radius: 32px; overflow: hidden; position: relative; group; cursor: pointer; }
+        .projects-section { background-color: #111; color: white; padding: 120px 5%; min-height: 100vh; position: relative; z-index: 20; }
+        .project-card { border-radius: 32px; overflow: hidden; position: relative; cursor: pointer; }
         .project-img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-card:hover .project-img { transform: scale(1.05); }
-        /* Style des compétences IUT */
         .tag-comp { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 6px 16px; border-radius: 99px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
         .tag-comp:hover { background: white; color: black; }
+
+        /* --- 4. SECTIONS FINALES --- */
+        .skill-tag { border: 1px solid #ccc; padding: 12px 24px; border-radius: 99px; font-size: 13px; font-weight: 700; display: inline-block; margin: 4px; transition: all 0.3s; }
+        .skill-tag:hover { background: black; color: white; border-color: black; transform: translateY(-2px); }
+        .timeline-item { border-left: 2px solid #ddd; padding-left: 30px; position: relative; padding-bottom: 40px; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: black; border-radius: 50%; }
+        
+        .footer-cta { background-color: #f5f5f5; padding: 120px 5%; border-radius: 40px; margin: 20px; text-align: center; overflow: hidden; position: relative; }
+        .footer-huge-text { font-size: clamp(4rem, 12vw, 200px); line-height: 0.8; font-weight: 800; letter-spacing: -0.05em; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -91,12 +97,9 @@
     <section id="reveal-section" class="reveal-wrapper">
         <div class="sticky-container">
             <div class="flex items-center justify-center gap-4 text-5xl md:text-8xl font-extrabold tracking-tighter w-full px-4">
-                
                 <span id="text-left" class="reveal-text-left">De l'idée</span>
-                
                 <div id="expand-pill" class="expand-pill bg-black">
                     <img src="https://images.unsplash.com/photo-1518932945647-7a3c969015ce?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity">
-                    
                     <div id="inner-content" class="inner-reveal-content px-10">
                         <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300 mb-6 block">// Mon Expertise</span>
                         <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6">Hardware & Software.</h2>
@@ -105,9 +108,7 @@
                         </p>
                     </div>
                 </div>
-                
                 <span id="text-right" class="reveal-text-right">Au système</span>
-
             </div>
         </div>
     </section>
@@ -124,17 +125,13 @@
                 <div class="project-card md:col-span-2 bg-[#1a1a1a] p-10 flex flex-col md:flex-row gap-10 items-center">
                     <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="project-img w-full h-full object-cover opacity-80">
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Stage 2026</span>
-                        </div>
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Stage 2026</span></div>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Simulateur de Capteurs.</h3>
                         <p class="text-gray-400 text-lg font-light mb-10">Développement d'un outil de simulation industriel chez Primal-Solem. Routage PCB, intégration de protocoles industriels et programmation bas niveau.</p>
                         <div class="flex flex-wrap gap-3">
-                            <span class="tag-comp">Concevoir</span>
-                            <span class="tag-comp">Implanter</span>
-                            <span class="tag-comp">Vérifier</span>
+                            <span class="tag-comp">Concevoir</span><span class="tag-comp">Implanter</span><span class="tag-comp">Vérifier</span>
                         </div>
                     </div>
                 </div>
@@ -142,31 +139,87 @@
                 <div class="project-card bg-[#1a1a1a] p-8">
                     <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
-                        <div class="absolute top-4 left-4 flex gap-2"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">SAÉ Universitaire</span></div>
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">SAÉ Universitaire</span></div>
                     </div>
                     <h3 class="text-3xl font-bold tracking-tighter mb-4">Fish'n'Chip</h3>
                     <p class="text-gray-400 font-light mb-8">Conception et routage d'une carte électronique haute densité. Focus sur l'intégrité du signal.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag-comp">Concevoir</span>
-                    </div>
+                    <div class="flex flex-wrap gap-2"><span class="tag-comp">Concevoir</span></div>
                 </div>
 
                 <div class="project-card bg-[#1a1a1a] p-8">
                     <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
                         <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
-                        <div class="absolute top-4 left-4 flex gap-2"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Robotique</span></div>
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Robotique</span></div>
                     </div>
                     <h3 class="text-3xl font-bold tracking-tighter mb-4">Robot Sumo</h3>
                     <p class="text-gray-400 font-light mb-8">Programmation d'algorithmes de combat autonome. Gestion temps réel des capteurs et actionneurs.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag-comp">Implanter</span>
-                        <span class="tag-comp">Maintenir</span>
-                    </div>
+                    <div class="flex flex-wrap gap-2"><span class="tag-comp">Implanter</span><span class="tag-comp">Maintenir</span></div>
                 </div>
-
             </div>
         </div>
     </section>
+
+    <section class="bg-white py-32 px-5 rounded-[40px] -mt-10 relative z-30">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
+            
+            <div>
+                <h2 class="text-4xl font-extrabold tracking-tighter mb-10">La Boîte à Outils.</h2>
+                <p class="text-gray-500 mb-8 font-light">Maîtrise des langages bas-niveau et des logiciels de conception pour des systèmes fiables.</p>
+                <div class="mb-10">
+                    <span class="text-[10px] uppercase font-bold text-gray-400 block mb-4 tracking-widest">Langages</span>
+                    <span class="skill-tag">C</span> <span class="skill-tag">C++</span> <span class="skill-tag">VHDL</span>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-gray-400 block mb-4 tracking-widest">Software & Hardware</span>
+                    <span class="skill-tag">KiCad</span> <span class="skill-tag">STM32 (CubeIDE)</span> <span class="skill-tag">FPGA</span>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-4xl font-extrabold tracking-tighter mb-10">Mon Parcours.</h2>
+                
+                <div class="timeline-item">
+                    <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">Objectif 2026 - 2029</span>
+                    <h4 class="text-xl font-bold">INSA Rennes (ESET)</h4>
+                    <p class="text-sm text-gray-500 mt-2 font-light">Spécialité Ingénierie Électronique et Systèmes Embarqués.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">Jan - Mai 2026</span>
+                    <h4 class="text-xl font-bold">Stage : Primal-Solem</h4>
+                    <p class="text-sm text-gray-500 mt-2 font-light">Assistante Ingénieure SE. Simulateur capteurs industriels.</p>
+                </div>
+
+                <div class="timeline-item border-l-transparent pb-0">
+                    <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">2023 - 2026</span>
+                    <h4 class="text-xl font-bold">BUT GEII Montpellier</h4>
+                    <p class="text-sm text-gray-500 mt-2 font-light">Formation électronique et informatique industrielle.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer-cta bg-black text-white">
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 select-none overflow-hidden">
+            <span class="footer-huge-text">HIRE ME</span>
+        </div>
+
+        <div class="relative z-10">
+            <h2 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-10 leading-[0.9]">Prête pour <br> l'alternance.</h2>
+            <p class="text-gray-400 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto italic">
+                Je recherche une alternance pour septembre 2026 afin de valider mon diplôme d'ingénieure à l'INSA Rennes.
+            </p>
+            <a href="mailto:sofiasekssaoui@gmail.com" class="bg-white text-black px-12 py-6 rounded-full text-xs font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">
+                M'envoyer un mail
+            </a>
+            
+            <div class="mt-32 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                <span>© 2026 Sofia Sekssaoui</span>
+                <span class="mt-4 md:mt-0">IUT Montpellier Sète — Spécialité GEII</span>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // 1. Rotation 3D
@@ -182,50 +235,8 @@
             setTimeout(() => { slides[prev].classList.remove('exit'); }, 1000); 
         }, 4000);
 
-        // 2. Animation Scroll Reveal
+        // 2. Animation Scroll Reveal Fluide (Lerp)
         const revealSection = document.getElementById('reveal-section');
         const pill = document.getElementById('expand-pill');
         const textLeft = document.getElementById('text-left');
-        const textRight = document.getElementById('text-right');
-        const innerContent = document.getElementById('inner-content');
-
-        let targetScroll = 0;
-        let currentScroll = 0;
-
-        window.addEventListener('scroll', () => { targetScroll = window.scrollY; });
-
-        function animateScroll() {
-            currentScroll += (targetScroll - currentScroll) * 0.08;
-            const rect = revealSection.getBoundingClientRect();
-            let progress = 0;
-            
-            if (rect.top <= 0) {
-                progress = Math.min(1, Math.max(0, Math.abs(rect.top) / (rect.height - window.innerHeight)));
-            }
-
-            const w = 140 + ((window.innerWidth * 0.94) - 140) * progress;
-            const h = 60 + ((window.innerHeight * 0.85) - 60) * progress;
-            const br = 100 - (100 - 40) * progress;
-
-            pill.style.width = `${w}px`;
-            pill.style.height = `${h}px`;
-            pill.style.borderRadius = `${br}px`;
-
-            textLeft.style.transform = `translateX(${-100 * progress}vw)`;
-            textLeft.style.opacity = 1 - (progress * 2);
-            textRight.style.transform = `translateX(${100 * progress}vw)`;
-            textRight.style.opacity = 1 - (progress * 2);
-
-            if(progress > 0.7) {
-                innerContent.style.opacity = (progress - 0.7) * 3.33;
-                innerContent.style.transform = `translateY(${20 - ((progress - 0.7) * 20 * 3.33)}px)`;
-            } else {
-                innerContent.style.opacity = 0;
-            }
-
-            requestAnimationFrame(animateScroll);
-        }
-        animateScroll();
-    </script>
-</body>
-</html>
+        const textRight = document.
