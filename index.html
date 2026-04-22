@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
         /* --- 1. HERO ORBITAL --- */
         .hero-section { position: relative; height: 100vh; width: 100vw; overflow: hidden; z-index: 10; }
@@ -36,33 +36,28 @@
         .tool-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); transform: translateY(-10px); }
         .tag-geii { font-[800] uppercase text-[10px] tracking-[0.2em] border border-white/20 px-3 py-1 rounded-full text-white/40 mb-6 inline-block; }
         .pill-skill { background: white; color: black; padding: 6px 16px; border-radius: 99px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Pour cacher la scrollbar sur la nav mobile */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-6 w-full px-6 md:px-10 z-[100] pointer-events-none">
-        <div class="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
-            
-            <div class="text-[11px] font-extrabold uppercase tracking-[0.3em] bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-sm">
-                Sofia.S
-            </div>
-            
-            <div class="hidden lg:flex gap-8 bg-white/60 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-sm text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                <a href="#" class="hover:text-black transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-black transition-colors">GitHub</a>
-                <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">Mon CV</a>
-            </div>
-
-            <div class="flex gap-3 items-center">
-                <div class="hidden md:flex gap-6 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-sm text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                    <a href="projets.html" class="hover:text-black transition-colors">Works</a>
-                </div>
-                <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-7 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-md">
-                    Contact
-                </a>
-            </div>
-
+    <nav class="fixed top-8 w-full z-[100] pointer-events-none flex justify-center gap-4 px-4">
+        
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 transition-all hover:bg-white/90">
+            <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">CV</a>
+            <a href="#" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
         </div>
+
+        <div class="pointer-events-auto bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-8 py-3.5 flex items-center gap-6 md:gap-8 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 overflow-x-auto whitespace-nowrap no-scrollbar transition-all hover:bg-white/90 max-w-[60vw] md:max-w-none">
+            <a href="#projets" class="hover:text-black transition-colors">Projets</a>
+            <a href="#parcours" class="hover:text-black transition-colors">Expériences professionnelles</a>
+            <a href="#competences" class="hover:text-black transition-colors">Compétences</a>
+            <a href="#parcours" class="hover:text-black transition-colors">Parcours</a>
+        </div>
+
     </nav>
 
     <header class="hero-section">
@@ -116,16 +111,55 @@
         </div>
     </section>
 
-    <section class="tools-section">
+    <section id="projets" class="bg-white py-32 px-5 relative z-30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-20 border-b border-black/10 pb-10">
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter">Sélection <br><span class="text-gray-400 italic font-light">de travaux.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <div class="md:col-span-2 bg-[#f9f9f9] rounded-[32px] p-10 flex flex-col md:flex-row gap-10 items-center border border-black/5 hover:border-black/20 transition-all">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-white text-black px-3 py-1 rounded-full shadow-sm">Stage 2026</span></div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Simulateur de Capteurs.</h3>
+                        <p class="text-gray-500 text-lg font-light mb-10">Développement d'un outil de simulation industriel chez Primal-Solem. Routage PCB, intégration de protocoles industriels et programmation bas niveau.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="pill-skill border border-black/10">Concevoir</span>
+                            <span class="pill-skill border border-black/10">Implanter</span>
+                            <span class="pill-skill border border-black/10">Vérifier</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#f9f9f9] rounded-[32px] p-8 border border-black/5 hover:border-black/20 transition-all">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-white text-black px-3 py-1 rounded-full shadow-sm">SAÉ Universitaire</span></div>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">Fish'n'Chip</h3>
+                    <p class="text-gray-500 font-light mb-8">Conception et routage d'une carte électronique haute densité. Focus sur l'intégrité du signal.</p>
+                </div>
+
+                <div class="bg-[#f9f9f9] rounded-[32px] p-8 border border-black/5 hover:border-black/20 transition-all">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4"><span class="text-[9px] uppercase tracking-widest font-bold bg-white text-black px-3 py-1 rounded-full shadow-sm">Robotique</span></div>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">Robot Sumo</h3>
+                    <p class="text-gray-500 font-light mb-8">Programmation d'algorithmes de combat autonome. Gestion temps réel des capteurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences" class="tools-section">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20">
                 <h2 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-4">La Boîte <br><span class="text-gray-600 font-light italic">à outils.</span></h2>
-                <div class="flex flex-wrap gap-3 mt-10">
-                    <span class="pill-skill">Concevoir</span>
-                    <span class="pill-skill">Vérifier</span>
-                    <span class="pill-skill">Implanter</span>
-                    <span class="pill-skill">Maintenir</span>
-                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -160,12 +194,42 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="mt-40 pt-20 border-t border-white/10 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.5em]">
-            Sofia Sekssaoui © 2026 — BUT GEII Montpellier Sète
-        </footer>
+            <div id="parcours" class="mt-40 border-t border-white/10 pt-20">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-16">Mon Parcours.</h2>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="border-l border-white/20 pl-6">
+                        <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest block mb-2">Objectif 2026 - 2029</span>
+                        <h4 class="text-xl font-bold mb-2">INSA Rennes (ESET)</h4>
+                        <p class="text-sm text-gray-400 font-light">Spécialité Ingénierie Électronique et Systèmes Embarqués.</p>
+                    </div>
+                    <div class="border-l border-white/20 pl-6">
+                        <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest block mb-2">Jan - Mai 2026</span>
+                        <h4 class="text-xl font-bold mb-2">Stage : Primal-Solem</h4>
+                        <p class="text-sm text-gray-400 font-light">Assistante Ingénieure SE. Simulateur capteurs industriels.</p>
+                    </div>
+                    <div class="border-l border-white/20 pl-6">
+                        <span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest block mb-2">2023 - 2026</span>
+                        <h4 class="text-xl font-bold mb-2">BUT GEII Montpellier</h4>
+                        <p class="text-sm text-gray-400 font-light">Formation électronique et informatique industrielle.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
+
+    <footer class="bg-black text-white pb-20 px-5">
+        <div class="bg-[#f5f5f5] text-black rounded-[48px] p-12 md:p-32 text-center max-w-7xl mx-auto relative overflow-hidden">
+            <h2 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Prête pour <br> l'alternance.</h2>
+            <p class="text-gray-500 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto italic">
+                Je recherche une alternance pour septembre 2026 afin de valider mon diplôme d'ingénieure à l'INSA Rennes.
+            </p>
+            <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-12 py-6 rounded-full text-xs font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">
+                M'envoyer un mail
+            </a>
+        </div>
+    </footer>
 
     <script>
         // TEXT REVEAL SLIDER
