@@ -7,81 +7,100 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f6f6f6; color: #1a1a1a; overflow: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f6f6f6; color: #1a1a1a; overflow: hidden; height: 100vh; }
         
-        /* Floating Images */
-        .floating-img { position: absolute; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transition: transform 0.5s ease; }
-        .floating-img:hover { transform: scale(1.05) translateY(-10px); }
-        
-        /* Positions des images comme sur ta vidéo */
-        .img-1 { top: 15%; left: 5%; width: 220px; height: 160px; transform: rotate(-5deg); }
-        .img-2 { top: 10%; right: 10%; width: 180px; height: 240px; transform: rotate(3deg); }
-        .img-3 { bottom: 15%; left: 10%; width: 140px; height: 180px; transform: rotate(2deg); }
-        .img-4 { bottom: 10%; right: 15%; width: 200px; height: 200px; transform: rotate(-3deg); }
-        .img-center-low { bottom: 5%; left: 50%; transform: translateX(-50%); width: 120px; height: 160px; }
-
-        /* Text Animation Logic */
-        .word-flicker { display: inline-block; animation: flicker 3s infinite; }
-        @keyframes flicker {
-            0%, 20% { opacity: 0; transform: translateY(10px); }
-            25%, 75% { opacity: 1; transform: translateY(0); }
-            80%, 100% { opacity: 0; transform: translateY(-10px); }
+        /* Floating Images avec accélération matérielle */
+        .floating-img { 
+            position: absolute; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06); 
+            will-change: transform;
+            pointer-events: none;
         }
 
-        /* Menu Style Pill */
-        .pill-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border-radius: 999px; padding: 8px 24px; border: 1px solid rgba(0,0,0,0.05); }
+        /* Tailles et positions initiales */
+        .img-1 { top: 12%; left: 8%; width: 240px; height: 180px; --r: -6deg; --s: 0.02; }
+        .img-2 { top: 8%; right: 12%; width: 200px; height: 260px; --r: 4deg; --s: 0.015; }
+        .img-3 { bottom: 12%; left: 12%; width: 160px; height: 200px; --r: 3deg; --s: 0.03; }
+        .img-4 { bottom: 8%; right: 18%; width: 220px; height: 220px; --r: -4deg; --s: 0.025; }
+        .img-5 { bottom: 6%; left: 45%; width: 130px; height: 170px; --r: 0deg; --s: 0.01; }
+
+        /* Animation de texte centrale */
+        .text-container { text-align: center; z-index: 10; pointer-events: auto; }
+        .dynamic-wrapper { height: 130px; overflow: hidden; display: block; }
+        .word { display: block; height: 130px; transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+
+        .pill-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="h-screen flex items-center justify-center">
+<body class="flex items-center justify-center">
 
     <nav class="fixed top-8 right-8 z-50 flex items-center gap-4">
-        <div class="pill-nav flex gap-8 text-[11px] font-bold uppercase tracking-widest">
-            <a href="projets.html" class="hover:opacity-50">Works</a>
-            <a href="experience.html" class="hover:opacity-50">Blog</a>
+        <div class="pill-nav flex gap-6 text-[10px] font-bold uppercase tracking-widest">
+            <a href="projets.html" class="hover:opacity-40 transition-opacity">Works</a>
+            <a href="experience.html" class="hover:opacity-40 transition-opacity">Blog</a>
         </div>
-        <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest">Contact</a>
+        <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-7 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Contact</a>
     </nav>
 
-    <div class="img-1 floating-img bg-gray-200"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
-    <div class="img-2 floating-img bg-gray-300"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
-    <div class="img-3 floating-img bg-gray-400"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
-    <div class="img-4 floating-img bg-gray-500"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover"></div>
-    <div class="img-center-low floating-img bg-gray-600"><img src="sofia.jpg" class="w-full h-full object-cover grayscale"></div>
+    <div class="img-1 floating-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover"></div>
+    <div class="img-2 floating-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover"></div>
+    <div class="img-3 floating-img"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover"></div>
+    <div class="img-4 floating-img"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover"></div>
+    <div class="img-5 floating-img"><img src="sofia.jpg" class="w-full h-full object-cover grayscale"></div>
 
-    <div class="text-center z-10">
-        <h2 class="text-[120px] font-extrabold tracking-tighter leading-none mb-4">
-            <span id="dynamic-word" class="word-flicker">Systems</span> <br>
-            <span class="text-gray-300 italic font-light">that perform</span>
-        </h2>
-        <p class="text-[13px] font-bold uppercase tracking-[0.4em] mb-10">Sofia SEKSSAOUI</p>
-        <a href="projets.html" class="bg-black text-white px-12 py-6 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform inline-block">Learn more</a>
+    <div class="text-container">
+        <div class="dynamic-wrapper">
+            <div id="word-stack">
+                <span class="word text-[120px] font-extrabold tracking-tighter">Systems</span>
+                <span class="word text-[120px] font-extrabold tracking-tighter">Hardware</span>
+                <span class="word text-[120px] font-extrabold tracking-tighter">Websites</span>
+                <span class="word text-[120px] font-extrabold tracking-tighter">Apps</span>
+            </div>
+        </div>
+        <h2 class="text-[120px] font-light italic text-gray-300 leading-none mt-[-30px]">that perform</h2>
+        <p class="text-[12px] font-bold uppercase tracking-[0.5em] mt-8">Sofia SEKSSAOUI</p>
+        <a href="projets.html" class="mt-12 bg-black text-white px-10 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">Learn more</a>
     </div>
 
-    <div class="fixed bottom-8 left-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-30">
-        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Montpellier, FR
-    </div>
-    <div class="fixed bottom-8 right-8 text-[10px] font-bold uppercase tracking-widest opacity-30">
-        ©2026
-    </div>
+    <div class="fixed bottom-8 left-8 text-[9px] font-bold uppercase tracking-widest opacity-20">Montpellier, FR</div>
+    <div class="fixed bottom-8 right-8 text-[9px] font-bold uppercase tracking-widest opacity-20">©2026</div>
 
     <script>
-        const words = ["Systems", "Hardware", "Websites", "Apps"];
-        let i = 0;
-        const wordEl = document.getElementById('dynamic-word');
-
+        // --- ANIMATION DU TEXTE ---
+        let currentWord = 0;
+        const stack = document.getElementById('word-stack');
         setInterval(() => {
-            i = (i + 1) % words.length;
-            wordEl.textContent = words[i];
-        }, 3000);
+            currentWord = (currentWord + 1) % 4;
+            stack.style.transform = `translateY(-${currentWord * 130}px)`;
+        }, 2500);
 
-        // Effet de parallaxe léger sur les images avec la souris
+        // --- PARALLAXE ULTRA-FLUIDE (Smooth Mouse Follow) ---
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
         document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            document.querySelectorAll('.floating-img').forEach(img => {
-                img.style.transform += ` translate(${moveX}px, ${moveY}px)`;
-            });
+            targetX = (e.clientX - window.innerWidth / 2);
+            targetY = (e.clientY - window.innerHeight / 2);
         });
+
+        function animate() {
+            // Lissage (interpolation linéaire)
+            mouseX += (targetX - mouseX) * 0.05;
+            mouseY += (targetY - mouseY) * 0.05;
+
+            document.querySelectorAll('.floating-img').forEach(img => {
+                const speed = parseFloat(getComputedStyle(img).getPropertyValue('--s'));
+                const rotation = getComputedStyle(img).getPropertyValue('--r');
+                const x = mouseX * speed;
+                const y = mouseY * speed;
+                img.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotation})`;
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
