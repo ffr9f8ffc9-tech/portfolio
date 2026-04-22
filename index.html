@@ -9,8 +9,7 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f5; color: #111; overflow: hidden; height: 100vh; perspective: 1000px; margin: 0; padding: 0; }
         
-        /* 1. ANIMATION DES IMAGES (ORBIT) */
-        /* Les images tournent en rond autour du centre */
+        /* 1. L'ORBITE PARFAITE */
         .orbit-container {
             position: absolute;
             top: 50%;
@@ -18,28 +17,35 @@
             width: 0;
             height: 0;
             z-index: 1;
-            /* L'animation globale de rotation */
-            animation: spin 60s linear infinite;
+            /* Temps pour faire un tour complet (plus fluide) */
+            animation: spin 45s linear infinite;
+        }
+
+        /* Positions exactes réparties sur un cercle de 380px de rayon */
+        .pos-1 { top: 0px; left: 380px; }
+        .pos-2 { top: 361px; left: 117px; }
+        .pos-3 { top: 223px; left: -307px; }
+        .pos-4 { top: -223px; left: -307px; }
+        .pos-5 { top: -361px; left: 117px; }
+
+        .orbit-wrapper {
+            position: absolute;
+            /* Centre l'image exactement sur son point d'ancrage */
+            transform: translate(-50%, -50%);
         }
 
         .orbit-img { 
-            position: absolute;
             border-radius: 32px; 
             overflow: hidden; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            will-change: transform;
-            /* On annule la rotation du parent pour que l'image reste droite */
-            animation: anti-spin 60s linear infinite;
+            /* Tourne dans le sens inverse pour que l'image reste droite */
+            animation: anti-spin 45s linear infinite;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes anti-spin {
-            100% { transform: rotate(-360deg); }
-        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes anti-spin { 100% { transform: rotate(-360deg); } }
 
-        /* 2. ANIMATION 3D DU TEXTE */
+        /* 2. TEXTE CENTRAL 3D */
         .text-container {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
@@ -65,9 +71,9 @@
             opacity: 0;
         }
 
-        /* 3. STYLE DES PILULES */
+        /* 3. DESIGN ELEMENTS */
         .pill-nav { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border-radius: 999px; padding: 6px 20px; border: 1px solid rgba(0,0,0,0.05); }
-        .huge-text { font-size: clamp(3rem, 9vw, 110px); line-height: 0.85; font-weight: 800; letter-spacing: -0.05em; }
+        .huge-text { font-size: clamp(3rem, 7vw, 100px); line-height: 0.9; font-weight: 800; letter-spacing: -0.04em; }
     </style>
 </head>
 <body class="relative">
@@ -81,47 +87,68 @@
     </nav>
 
     <div class="orbit-container">
-        <div class="orbit-img" style="top: -250px; left: -400px; width: 220px; height: 180px;">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
+        
+        <div class="orbit-wrapper pos-1">
+            <div class="orbit-img" style="width: 220px; height: 180px;">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover">
+            </div>
         </div>
-        <div class="orbit-img" style="top: 150px; left: 300px; width: 180px; height: 260px;">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
+
+        <div class="orbit-wrapper pos-2">
+            <div class="orbit-img" style="width: 180px; height: 260px;">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover">
+            </div>
         </div>
-        <div class="orbit-img" style="top: -300px; left: 200px; width: 160px; height: 200px;">
-            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
+
+        <div class="orbit-wrapper pos-3">
+            <div class="orbit-img" style="width: 160px; height: 200px;">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover">
+            </div>
         </div>
-        <div class="orbit-img" style="top: 200px; left: -350px; width: 240px; height: 240px;">
-            <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
+
+        <div class="orbit-wrapper pos-4">
+            <div class="orbit-img" style="width: 240px; height: 240px;">
+                <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover">
+            </div>
         </div>
-        <div class="orbit-img" style="top: 0px; left: -500px; width: 150px; height: 200px;">
-            <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
+
+        <div class="orbit-wrapper pos-5">
+            <div class="orbit-img" style="width: 150px; height: 200px;">
+                <img src="sofia.jpg" class="w-full h-full object-cover grayscale">
+            </div>
         </div>
+        
     </div>
 
     <div class="text-container h-[400px]">
         
         <div class="slide active">
-            <div class="huge-text text-black">Portfolio</div>
+            <div class="huge-text text-[#b0b0b0] font-light italic mb-2">Portfolio</div>
             <div class="huge-text text-black">Sofia SEKSSAOUI</div>
-            <a href="projets.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Découvrir mes projets</a>
         </div>
 
         <div class="slide">
             <div class="huge-text text-black">Découvrez</div>
-            <div class="huge-text text-[#b0b0b0] lowercase font-medium tracking-normal my-2">qui</div>
-            <div class="huge-text text-black">Je suis</div>
-            <a href="experience.html" class="mt-10 bg-black text-white px-10 py-5 rounded-[24px] text-[13px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform pointer-events-auto">Mon parcours</a>
+            <div class="huge-text text-black">qui je suis</div>
+        </div>
+
+        <div class="slide">
+            <div class="huge-text text-black">Future ingénieure</div>
+            <div class="huge-text text-[#b0b0b0] text-[50px] lowercase font-medium tracking-normal my-2">en</div>
+            <div class="huge-text text-black">Systèmes embarqués</div>
         </div>
 
     </div>
 
-    <div class="fixed bottom-8 left-8 flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest">
-        <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center">
-            <span class="w-1 h-1 bg-white rounded-full"></span>
-        </span>
+    <div class="absolute top-[65%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+        <a href="projets.html" class="bg-black text-white px-10 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">Découvrir mes projets</a>
+    </div>
+
+    <div class="fixed bottom-8 left-8 flex items-center gap-3 text-[12px] font-bold uppercase tracking-widest text-gray-500">
+        <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
         Montpellier, FR
     </div>
-    <div class="fixed bottom-8 right-8 text-[12px] font-bold uppercase tracking-widest opacity-40">©2026</div>
+    <div class="fixed bottom-8 right-8 text-[12px] font-bold uppercase tracking-widest text-gray-400">©2026</div>
 
     <script>
         const slides = document.querySelectorAll('.slide');
@@ -140,7 +167,7 @@
             setTimeout(() => {
                 slides[prev].classList.remove('exit');
             }, 1000); 
-        }, 4000); 
+        }, 4000); // Défilement toutes les 4 secondes
     </script>
 </body>
 </html>
