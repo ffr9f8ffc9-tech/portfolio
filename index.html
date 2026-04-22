@@ -39,7 +39,9 @@
         .project-card { border-radius: 32px; overflow: hidden; position: relative; group; cursor: pointer; }
         .project-img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-card:hover .project-img { transform: scale(1.05); }
-        .tag { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 4px 12px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); }
+        /* Style des compétences IUT */
+        .tag-comp { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 6px 16px; border-radius: 99px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
+        .tag-comp:hover { background: white; color: black; }
     </style>
 </head>
 <body>
@@ -77,6 +79,10 @@
             </div>
         </div>
         
+        <div class="absolute top-[65%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+            <a href="projets.html" class="bg-black text-white px-10 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest inline-block hover:scale-105 transition-transform">Découvrir mes projets</a>
+        </div>
+
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 animate-bounce">
             Scroll pour explorer ↓
         </div>
@@ -93,7 +99,7 @@
                     
                     <div id="inner-content" class="inner-reveal-content px-10">
                         <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300 mb-6 block">// Mon Expertise</span>
-                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6">Hardware & Firmware.</h2>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6">Hardware & Software.</h2>
                         <p class="text-lg md:text-xl font-light text-gray-300 max-w-2xl mx-auto">
                             Je conçois des architectures électroniques robustes et j'écris le code bas-niveau qui leur donne vie. La maîtrise totale de la chaîne d'acquisition.
                         </p>
@@ -119,15 +125,16 @@
                     <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="project-img w-full h-full object-cover opacity-80">
                         <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="tag">Stage 2026</span>
-                            <span class="tag">Primal-Solem</span>
+                            <span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Stage 2026</span>
                         </div>
                     </div>
                     <div class="w-full md:w-1/2">
                         <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Simulateur de Capteurs.</h3>
-                        <p class="text-gray-400 text-lg font-light mb-8">Développement d'un outil de simulation industriel. Routage PCB, Firmware C sur STM32 et intégration des protocoles RS485 / SDI-12.</p>
-                        <div class="flex gap-2">
-                            <span class="tag">KiCad</span><span class="tag">Language C</span><span class="tag">STM32</span>
+                        <p class="text-gray-400 text-lg font-light mb-10">Développement d'un outil de simulation industriel chez Primal-Solem. Routage PCB, intégration de protocoles industriels et programmation bas niveau.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tag-comp">Concevoir</span>
+                            <span class="tag-comp">Implanter</span>
+                            <span class="tag-comp">Vérifier</span>
                         </div>
                     </div>
                 </div>
@@ -135,21 +142,26 @@
                 <div class="project-card bg-[#1a1a1a] p-8">
                     <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
-                        <div class="absolute top-4 left-4 flex gap-2"><span class="tag">Universitaire</span></div>
+                        <div class="absolute top-4 left-4 flex gap-2"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">SAÉ Universitaire</span></div>
                     </div>
                     <h3 class="text-3xl font-bold tracking-tighter mb-4">Fish'n'Chip</h3>
-                    <p class="text-gray-400 font-light mb-6">Conception et routage d'une carte électronique haute densité. Focus sur l'intégrité du signal.</p>
-                    <span class="tag">Hardware Design</span>
+                    <p class="text-gray-400 font-light mb-8">Conception et routage d'une carte électronique haute densité. Focus sur l'intégrité du signal.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-comp">Concevoir</span>
+                    </div>
                 </div>
 
                 <div class="project-card bg-[#1a1a1a] p-8">
                     <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden relative mb-8">
                         <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="project-img w-full h-full object-cover opacity-80">
-                        <div class="absolute top-4 left-4 flex gap-2"><span class="tag">Robotique</span></div>
+                        <div class="absolute top-4 left-4 flex gap-2"><span class="text-[9px] uppercase tracking-widest font-bold bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Robotique</span></div>
                     </div>
                     <h3 class="text-3xl font-bold tracking-tighter mb-4">Robot Sumo</h3>
-                    <p class="text-gray-400 font-light mb-6">Programmation d'algorithmes de combat autonome en C++. Gestion temps réel des capteurs.</p>
-                    <span class="tag">C++</span><span class="tag">Algorithmes</span>
+                    <p class="text-gray-400 font-light mb-8">Programmation d'algorithmes de combat autonome. Gestion temps réel des capteurs et actionneurs.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-comp">Implanter</span>
+                        <span class="tag-comp">Maintenir</span>
+                    </div>
                 </div>
 
             </div>
