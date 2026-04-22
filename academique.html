@@ -20,13 +20,31 @@
         .tag-year { background: #111; color: white; padding: 8px 20px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .tag-subject { border: 1px solid rgba(0,0,0,0.1); padding: 6px 14px; border-radius: 99px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #555; background: white; }
 
-        /* Style des cartes Parcours */
-        .timeline-card { background: white; border-radius: 40px; padding: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: transform 0.4s ease, box-shadow 0.4s ease; border: 1px solid rgba(0,0,0,0.05); }
-        .timeline-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+        /* Style des cartes Parcours (Transformées en liens block) */
+        .timeline-card { 
+            display: flex;
+            background: white; 
+            border-radius: 40px; 
+            padding: 60px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03); 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: 1px solid rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: inherit;
+        }
+        .timeline-card:hover { 
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1); 
+            border-color: rgba(0,0,0,0.1);
+        }
         
-        /* Emplacement pour les Logos */
-        .logo-box { width: 120px; height: 120px; border-radius: 32px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; padding: 10px; }
+        .logo-box { width: 120px; height: 120px; border-radius: 32px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; padding: 10px; transition: transform 0.4s ease; }
+        .timeline-card:hover .logo-box { transform: scale(1.05); }
         .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* Indicateur de lien externe */
+        .link-hint { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-top: 20px; display: flex; items-center: center; gap: 6px; transition: color 0.3s; }
+        .timeline-card:hover .link-hint { color: #000; }
     </style>
 </head>
 <body>
@@ -56,8 +74,8 @@
         
         <div class="hidden md:block absolute left-[86px] top-10 bottom-10 w-[2px] bg-gray-200 z-0"></div>
 
-        <article class="timeline-card flex flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
-            <div class="logo-box bg-white">
+        <a href="https://www.insa-rennes.fr/e-set.html" target="_blank" class="timeline-card flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
+            <div class="logo-box">
                 <img src="https://file.garden/aeij_fhnrxe8Mmog/Insa-rennes-logo.svg.png" alt="Logo INSA Rennes">
             </div>
             
@@ -75,11 +93,14 @@
                     <span class="tag-subject">Systèmes Embarqués</span>
                     <span class="tag-subject">Électronique Numérique</span>
                 </div>
+                <div class="link-hint">
+                    Visiter le site de l'école →
+                </div>
             </div>
-        </article>
+        </a>
 
-        <article class="timeline-card flex flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
-            <div class="logo-box bg-white">
+        <a href="https://formations.umontpellier.fr/fr/formations/but-bachelor-universitaire-de-technologie-BC/b-u-t-genie-electrique-et-informatique-industrielle-KK58PAC1/electronique-et-systemes-embarques-KK58PO98.html" target="_blank" class="timeline-card flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
+            <div class="logo-box">
                 <img src="https://file.garden/aeij_fhnrxe8Mmog/LogoIutMontpellier.png" alt="Logo IUT Montpellier">
             </div>
             
@@ -87,10 +108,10 @@
                 <div class="flex justify-between items-center mb-6">
                     <span class="tag-year">2023 — 2026</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">IUT Montpellier Sète</h2>
-                <h3 class="text-xl md:text-2xl font-bold text-gray-400 mb-6">B.U.T. GEII — Spécialité ESE</h3>
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">IUT Montpellier Sète [cite: 6]</h2>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-400 mb-6">B.U.T. GEII — Spécialité ESE [cite: 7, 10]</h3>
                 <p class="text-gray-500 leading-relaxed font-light mb-8 max-w-3xl">
-                    Formation technique approfondie avec une spécialisation forte en <strong>Électronique et Systèmes Embarqués (ESE)</strong>. Réalisation de multiples projets complexes mêlant hardware (PCB) et software (Bancs de test, Robotique).
+                    Formation technique approfondie avec une spécialisation forte en <strong>Électronique et Systèmes Embarqués (ESE)</strong>. Réalisation de multiples projets complexes mêlant hardware (PCB) et software.
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <span class="tag-subject">Programmation C/C++</span>
@@ -98,34 +119,40 @@
                     <span class="tag-subject">Microcontrôleurs</span>
                     <span class="tag-subject">VHDL</span>
                 </div>
+                <div class="link-hint">
+                    Consulter la fiche formation →
+                </div>
             </div>
-        </article>
+        </a>
 
-        <article class="timeline-card flex flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
-            <div class="logo-box bg-white">
+        <a href="https://rene-gosse.mon-ent-occitanie.fr/" target="_blank" class="timeline-card flex-col md:flex-row gap-10 md:gap-16 items-start relative z-10 reveal-up">
+            <div class="logo-box">
                 <img src="https://file.garden/aeij_fhnrxe8Mmog/logo_f4e8fe4e-59a5-4ca9-ba79-fe1b240175e8.svg" alt="Logo Lycée René Gosse">
             </div>
             
             <div class="flex-1">
                 <div class="flex justify-between items-center mb-6">
-                    <span class="tag-year bg-gray-300 text-black">2020 — 2023</span>
+                    <span class="tag-year bg-gray-300 text-black">2020 — 2023 [cite: 14]</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">Lycée René Gosse</h2>
-                <h3 class="text-xl md:text-2xl font-bold text-gray-400 mb-6">Baccalauréat Général (Clermont l'Hérault)</h3>
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">Lycée René Gosse [cite: 11]</h2>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-400 mb-6">Baccalauréat Général (Clermont l'Hérault) [cite: 13]</h3>
                 <p class="text-gray-500 leading-relaxed font-light mb-8 max-w-3xl">
                     Obtention du baccalauréat avec de solides bases scientifiques et informatiques.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="tag-subject">Spécialité Mathématiques</span>
-                    <span class="tag-subject">Spécialité NSI (Numérique et Sciences Info)</span>
+                    <span class="tag-subject">Spécialité Mathématiques [cite: 13]</span>
+                    <span class="tag-subject">Spécialité NSI [cite: 13]</span>
+                </div>
+                <div class="link-hint">
+                    Accéder à l'ENT du lycée →
                 </div>
             </div>
-        </article>
+        </a>
 
     </main>
 
     <footer class="mt-10 mb-10 pt-10 border-t border-black/10 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 reveal-up">
-        © 2026 Sofia Sekssaoui — IUT Montpellier Sète (GEII)
+        © 2026 Sofia Sekssaoui — IUT Montpellier Sète (GEII) [cite: 9]
     </footer>
 
     <script>
