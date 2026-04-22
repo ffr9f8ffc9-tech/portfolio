@@ -32,7 +32,7 @@
         body.modal-active { overflow: hidden; }
         
         /* iPhone Mockup CSS */
-        .iphone-frame { border: 12px solid #1a1a1a; border-radius: 40px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); background-color: #1a1a1a; }
+        .iphone-frame { border: 12px solid #1a1a1a; border-radius: 40px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); background-color: #1a1a1a; margin: 0 auto; }
         .iphone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background-color: #1a1a1a; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; z-index: 10; }
         .iphone-screen { border-radius: 28px; overflow: hidden; background-color: #000; width: 100%; height: 100%; position: relative; }
     </style>
@@ -54,7 +54,7 @@
 
     <header class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto reveal-up">
         <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] block mb-6">Archive Technique</span>
-        <h1 class="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">Mes <br><span class="text-gray-400 italic font-light">Projets.</span></h1>
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9] whitespace-nowrap">Mes Projets.</h1>
         <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto">
             Cliquez sur un projet pour explorer les détails techniques. Du hardware industriel aux applications mobiles de performance.
         </p>
@@ -82,8 +82,9 @@
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Simulateur de <br>Capteurs.</h2>
                 <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
                     <span class="tag-comp">Concevoir</span>
-                    <span class="tag-comp">Implanter</span>
                     <span class="tag-comp">Vérifier</span>
+                    <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Maintenir</span>
                 </div>
                 <div class="flex gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     Cliquez pour voir les détails →
@@ -138,6 +139,8 @@
             <div class="w-full md:w-[45%]">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Robot <br>Sumo.</h2>
                 <div class="flex flex-wrap gap-2 mb-8 pointer-events-none">
+                    <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Vérifier</span>
                     <span class="tag-comp">Implanter</span>
                     <span class="tag-comp">Maintenir</span>
                 </div>
@@ -167,7 +170,9 @@
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6">Run <br>Tracker.</h2>
                 <div class="flex flex-wrap md:justify-end gap-2 mb-8 pointer-events-none">
                     <span class="tag-comp">Concevoir</span>
+                    <span class="tag-comp">Vérifier</span>
                     <span class="tag-comp">Implanter</span>
+                    <span class="tag-comp">Maintenir</span>
                 </div>
                 <div class="flex md:justify-end gap-2 border-t border-gray-200 pt-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     Cliquez pour la démo vidéo →
