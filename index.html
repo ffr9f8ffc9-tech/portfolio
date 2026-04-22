@@ -24,13 +24,13 @@
         .slide.exit { transform: translate(-50%, -50%) rotateX(90deg); opacity: 0; }
         .huge-text { font-size: clamp(3rem, 7.5vw, 110px); line-height: 0.85; font-weight: 800; letter-spacing: -0.04em; }
 
-        /* --- 2. SCROLL REVEAL CORRIGÉ --- */
+        /* --- 2. SCROLL REVEAL --- */
         .reveal-wrapper { position: relative; height: 250vh; z-index: 30; background: transparent; }
         .sticky-container { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .expand-pill { position: relative; width: 140px; height: 60px; border-radius: 100px; overflow: hidden; will-change: width, height, border-radius; transform: translateZ(0); display: flex; align-items: center; justify-content: center; background: #000; }
-        .inner-reveal-content { position: absolute; color: white; text-align: center; opacity: 0; z-index: 10; width: 80%; }
+        .inner-reveal-content { position: absolute; color: white; text-align: center; opacity: 0; z-index: 20; width: 85%; max-width: 800px; }
 
-        /* --- 3. BOÎTE À OUTILS (STYLÉ) --- */
+        /* --- 3. BOÎTE À OUTILS --- */
         .tools-section { background-color: #111; color: white; padding: 120px 5%; position: relative; z-index: 40; border-radius: 48px 48px 0 0; margin-top: -10vh; }
         .tool-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; border-radius: 32px; transition: all 0.4s ease; }
         .tool-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); transform: translateY(-10px); }
@@ -40,16 +40,34 @@
 </head>
 <body>
 
-    <nav class="fixed top-8 right-8 z-[100] flex items-center gap-4">
-        <div class="bg-white/60 backdrop-blur-md border border-gray-100 rounded-full px-6 py-2 flex gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-            <a href="#projets" class="hover:text-black">Works</a>
-            <a href="mailto:sofiasekssaoui@gmail.com" class="hover:text-black">Contact</a>
+    <nav class="fixed top-6 w-full px-6 md:px-10 z-[100] pointer-events-none">
+        <div class="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
+            
+            <div class="text-[11px] font-extrabold uppercase tracking-[0.3em] bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-sm">
+                Sofia.S
+            </div>
+            
+            <div class="hidden lg:flex gap-8 bg-white/60 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-sm text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                <a href="#" class="hover:text-black transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-black transition-colors">GitHub</a>
+                <a href="CV_ATS_SEKSSAOUI_Sofia.pdf" target="_blank" class="hover:text-black transition-colors">Mon CV</a>
+            </div>
+
+            <div class="flex gap-3 items-center">
+                <div class="hidden md:flex gap-6 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-sm text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                    <a href="projets.html" class="hover:text-black transition-colors">Works</a>
+                </div>
+                <a href="mailto:sofiasekssaoui@gmail.com" class="bg-black text-white px-7 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-md">
+                    Contact
+                </a>
+            </div>
+
         </div>
     </nav>
 
     <header class="hero-section">
         <div class="orbit-container">
-            <div class="orbit-wrapper pos-1"><div class="orbit-img" style="width: 220px; height: 180px;"><img src="https://file.garden/aeij_fhnrxe8Mmog/IMG_4319.JPG" class="w-full h-full object-cover"></div></div>
+            <div class="orbit-wrapper pos-1"><div class="orbit-img" style="width: 220px; height: 180px;"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" class="w-full h-full object-cover"></div></div>
             <div class="orbit-wrapper pos-2"><div class="orbit-img" style="width: 180px; height: 260px;"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" class="w-full h-full object-cover"></div></div>
             <div class="orbit-wrapper pos-3"><div class="orbit-img" style="width: 160px; height: 200px;"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500" class="w-full h-full object-cover"></div></div>
             <div class="orbit-wrapper pos-4"><div class="orbit-img" style="width: 240px; height: 240px;"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500" class="w-full h-full object-cover"></div></div>
@@ -78,14 +96,21 @@
         <div class="sticky-container">
             <div class="flex items-center justify-center gap-6 text-5xl md:text-8xl font-extrabold tracking-tighter w-full">
                 <span id="txt-left">De l'idée</span>
+                
                 <div id="pill" class="expand-pill">
-                    <img src="https://images.unsplash.com/photo-1518932945647-7a3c969015ce?w=1000" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                    <img src="https://images.unsplash.com/photo-1518932945647-7a3c969015ce?w=1000" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80 z-0"></div>
+                    
                     <div id="reveal-content" class="inner-reveal-content">
-                        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 block mb-6">Expertise technique</span>
-                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-4">Hardware & Software.</h2>
-                        <p class="text-lg md:text-xl font-light text-gray-300">L'alliance de l'électronique de précision et de l'intelligence embarquée.</p>
+                        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-300 block mb-6 drop-shadow-md">// Mon Expertise</span>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6 text-white drop-shadow-xl">Hardware & Software.</h2>
+                        <p class="text-lg md:text-xl font-medium text-gray-100 drop-shadow-lg leading-relaxed">
+                            Je conçois des architectures électroniques robustes et j'écris le code bas-niveau qui leur donne vie. La maîtrise totale de la chaîne d'acquisition.
+                        </p>
                     </div>
                 </div>
+                
                 <span id="txt-right">Au système</span>
             </div>
         </div>
@@ -106,21 +131,20 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="tool-card">
                     <span class="tag-geii">01 // Systèmes Embarqués</span>
-                    <h3 class="text-3xl font-bold mb-6 tracking-tight">Programmation & Firmware</h3>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed text-sm">Développement bas niveau et conception d'architectures logicielles complexes.</p>
-                    <div class="space-y-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>C / C++ / VHDL</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Quartus / STM32Cube</span></div>
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight leading-tight">Programmation C/C++ et VHDL</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm">Développement bas niveau, conception d'architectures et logique programmable.</p>
+                    <div class="mt-8 space-y-3 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Quartus</span></div>
+                        <div class="flex justify-between border-b border-white/5 pb-2"><span>STM32CubeIDE</span></div>
                         <div class="flex justify-between"><span>QtCreator</span></div>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <span class="tag-geii">02 // Électronique</span>
-                    <h3 class="text-3xl font-bold mb-6 tracking-tight">Conception Hardware</h3>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed text-sm">Saisie de schémas et routage PCB pour des applications analogiques et numériques.</p>
-                    <div class="space-y-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Analogique / Numérique</span></div>
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight leading-tight">Conception Analogique / Numérique</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm">Saisie de schémas, routage de cartes haute densité et intégrité du signal.</p>
+                    <div class="mt-8 space-y-3 text-xs font-bold text-gray-500 uppercase tracking-widest">
                         <div class="flex justify-between border-b border-white/5 pb-2"><span>KiCad</span></div>
                         <div class="flex justify-between"><span>Mentor PADS</span></div>
                     </div>
@@ -128,12 +152,11 @@
 
                 <div class="tool-card">
                     <span class="tag-geii">03 // Validation</span>
-                    <h3 class="text-3xl font-bold mb-6 tracking-tight">Bancs de Test</h3>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed text-sm">Mise en place et automatisation de protocoles de test pour garantir la fiabilité système.</p>
-                    <div class="space-y-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight leading-tight">Mise en place de bancs de test</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm">Création et automatisation de protocoles de vérification pour valider les systèmes.</p>
+                    <div class="mt-8 space-y-3 text-xs font-bold text-gray-500 uppercase tracking-widest">
                         <div class="flex justify-between border-b border-white/5 pb-2"><span>Automatisation</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Instrumentation</span></div>
-                        <div class="flex justify-between"><span>SDI-12 / RS485</span></div>
+                        <div class="flex justify-between"><span>Instrumentation</span></div>
                     </div>
                 </div>
             </div>
@@ -158,7 +181,7 @@
             setTimeout(() => { slides[prev].classList.remove('exit'); }, 1000); 
         }, 4000);
 
-        // SCROLL REVEAL LOGIC (FIXED)
+        // SCROLL REVEAL LOGIC
         const pill = document.getElementById('pill');
         const txtL = document.getElementById('txt-left');
         const txtR = document.getElementById('txt-right');
@@ -172,7 +195,7 @@
                 progress = Math.min(1, Math.max(0, Math.abs(rect.top) / (rect.height - window.innerHeight)));
             }
 
-            // Interpolation des valeurs
+            // Interpolation
             const w = 140 + (window.innerWidth * 0.9 - 140) * progress;
             const h = 60 + (window.innerHeight * 0.8 - 60) * progress;
             const br = 100 - 68 * progress;
